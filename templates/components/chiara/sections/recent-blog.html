@@ -1,0 +1,20 @@
+{{#block "chiara-recent-blog"}}
+{{#and settings.blog_enabled blog.recent_posts}}
+<div class="chiara-section chiara-section--recentBlog">
+    <div class="chiara-recentBlog{{#if theme_settings.recentBlog_type}} chiara-recentBlog--{{theme_settings.recentBlog_type}}{{/if}}">
+        {{#if theme_settings.recentBlog_heading}}
+            <h2 class="page-heading">{{theme_settings.recentBlog_heading}}</h2>
+        {{/if}}
+        {{#if theme_settings.recentBlog_subheading}}
+            <p class="page-subheading">{{theme_settings.recentBlog_subheading}}</p>
+        {{/if}}
+        <div class="chiara-recentBlog-posts">
+            {{#each blog.recent_posts}}
+                {{> components/blog/post post=this settings=../settings title_tag="h3"}}
+            {{/each}}
+        </div>
+        <p class="chiara-recentBlog-button"><a href="/blog/" class="button">View All Posts</a></p>
+    </div>
+</div>
+{{/and}}
+{{/block}}

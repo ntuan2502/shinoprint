@@ -1,0 +1,21 @@
+{{#if children}}
+    <li class="navList-item has-subMenu">
+        <a class="navList-action has-subMenu{{#if is_active}} is-active{{/if}}" href="{{url}}">{{name}}</a>
+        <a class="navList-toggle{{#if is_active}} is-open{{/if}}" data-collapsible="navList-category-{{id}}"><i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-add" /></svg></i></a>
+        <ul class="navList{{#if is_active}} is-open{{/if}}" id="navList-category-{{id}}">
+            {{#each children}}
+                {{> components/category/nav-category-item currentCategory=../currentCategory currentId=../currentId}}
+            {{/each}}
+        </ul>
+    </li>
+{{else}}
+    <li class="navList-item">
+        <a class="navList-action{{#if is_active}} is-active{{/if}}" href="{{url}}">{{name}}</a>
+    </li>
+{{/if}}
+
+{{#if currentCategory}}
+    {{#if currentCategory.id '==' id}}
+        {{#if (merge currentCategory foundCurrentCategory=true)}}{{/if}}
+    {{/if}}
+{{/if}}

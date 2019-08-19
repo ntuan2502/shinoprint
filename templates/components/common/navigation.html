@@ -1,0 +1,40 @@
+<nav class="navUser">
+    <ul class="navUser-section">
+
+        <li class="navUser-item navUser-item--search">
+            <a class="navUser-action navUser-action--quickSearch" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false">
+                <i class="navUser-item-icon"><svg><use xlink:href="#icon-search" /></svg></i>
+                <span class="navUser-item-searchLabel">{{lang 'common.search'}}</span>
+            </a>
+        </li>
+
+        <li class="navUser-item navUser-item--compare">
+            <a class="navUser-action navUser-action--compare" href="{{urls.compare}}" data-compare-nav>
+                <i class="navUser-item-icon"><svg><use xlink:href="#icon-compare" /></svg></i>
+                <span class="navUser-item-compareLabel">{{lang 'common.compare'}}</span>
+                <span class="countPill countPill--positive"></span></a>
+        </li>
+
+        <li class="navUser-item navUser-item--cart">
+            <a
+                class="navUser-action"
+                data-cart-preview
+                data-dropdown="cart-preview-dropdown"
+                data-options="align:right"
+                href="{{urls.cart}}">
+                <i class="navUser-item-icon"><svg><use xlink:href="#icon-cart" /></svg></i>
+                <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span>
+                <span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{cart.quantity}}</span>
+            </a>
+
+            <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
+        </li>
+
+        <li class="navUser-item navUser-item--more">
+            <a class="navUser-action navUser-action--more" href="#" id="navUser-more-toggle" data-collapsible="navUser-more-panel" data-group-collapsible="main">
+                <i class="navUser-item-icon"><svg><use xlink:href="#icon-menu" /></svg></i>
+                <span class="navUser-item-moreLabel">{{lang 'common.more'}}</span>
+            </a>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,7 @@
+<ul class="productGrid{{#if columns}} productGrid--maxCol{{columns}}{{/if}}">
+    {{#each products}}
+    <li class="product">
+        {{>components/products/card settings=../settings show_compare=../show_compare show_rating=../settings.show_product_rating theme_settings=../theme_settings customer=../customer show_wishlist=../settings.show_wishlist event=../event position=(add @index 1)}}
+    </li>
+    {{/each}}
+</ul>

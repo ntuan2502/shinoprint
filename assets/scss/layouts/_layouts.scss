@@ -1,0 +1,81 @@
+// =============================================================================
+// LAYOUTS
+// =============================================================================
+
+
+// Global layouts
+// -----------------------------------------------------------------------------
+
+// Chiara MOD: move container to top most.
+// Container
+@import "container/container";
+@import "container/container-chiara";
+
+// Header
+@import "header/header";
+@import "header/header-chiara";
+
+// Page
+@import "body/body";
+@import "body/body-chiara";
+
+// Footer
+@import "footer/footer";
+@import "footer/footer-chiara";
+
+// Container
+// @import "container/container";
+// @import "container/container-chiara";
+
+
+// Page content layouts
+// -----------------------------------------------------------------------------
+
+// Blog
+@import "blog/blog";
+@import "blog/blog-chiara";
+
+// Sidebar blocks
+@import "sidebar/block";
+@import "sidebar/block-chiara";
+
+// Brand grid
+@import "brands/brandGrid";
+@import "brands/brandGrid-chiara";
+
+// Brand product list
+@import "brands/brand";
+@import "brands/brand-chiara";
+
+// Product grid
+@import "products/productGrid";
+@import "products/productGrid-chiara";
+
+// Product list
+@import "products/productList";
+
+// Product view
+@import "products/productView";
+@import "products/productView-chiara";
+
+// Product Sale Badges
+@import "products/productSaleBadges";
+@import "products/productSaleBadges-chiara";
+
+// Product view
+@import "products/productSwatch";
+@import "products/productSwatch-chiara";
+
+// Category page - Chiara
+@import "category/category";
+
+
+// Account
+@import "account/account";
+@import "account/account-chiara";
+
+// Search
+@import "search/search";
+
+// Checkout
+@import "checkout/checkout-chiara";

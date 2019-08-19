@@ -1,0 +1,103 @@
+---
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{#partial "page-before"}}
+    <div id="productpage-banner-top">
+    </div>
+{{/partial}}
+{{#partial "page"}}
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert-info message}}
+    {{/each}}
+
+    <div class="productView-container">
+        <div itemscope itemtype="http://schema.org/Product">
+            {{> components/products/product-view schema=true}}
+        </div>
+
+        {{#any (unless theme_settings.alsobought) (if theme_settings.alsobought_product '!=' 'related')}}
+        {{#if product.related_products}}
+        <section class="productView-productsList productView-productsList--related">
+            <h3 class="productView-productsList-heading">{{lang 'products.related_products'}}</h3>
+            <div class="productView-productsList-content">
+                {{> components/products/carousel products=product.related_products columns=5}}
+            </div>
+        </section>
+        {{/if}}
+        {{/any}}
+
+        {{#any (unless theme_settings.alsobought) (if theme_settings.alsobought_product '!=' 'similar')}}
+        {{#if product.similar_by_views}}
+        <section class="productView-productsList productView-productsList--similar">
+            <h3 class="productView-productsList-heading">{{lang 'products.similar_by_views'}}</h3>
+            <div class="productView-productsList-content">
+                {{> components/products/carousel products=product.similar_by_views columns=5}}
+            </div>
+        </section>
+        {{/if}}
+        {{/any}}
+    </div>
+
+    <h3 class="productView-productsList-heading">Recommend Products</h3>
+    <div class="your-class">
+        
+    </div>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var name = $('.productView-title').text();
+        console.log(name);
+        $.ajax({
+                url: 'https://shinoprint.herokuapp.com/recommendproducts/' + name,
+                type: "get",
+                success: function(data) {
+                    var products = data.data;
+                    console.log(products);
+                    products.forEach(function(product) {
+                        $('.your-class').append('<a style="margin: 10px; text-decoration: none;" href="'+ product.custom_url.url +'"><img style="margin: 10%;" src="'+ product.images.url_thumbnail +'"/><p style="text-align: center; margin-top: 10px; text-transform: uppercase; color: #666; font-weight: 400; font-size: 12px; letter-spacing: .04em;">'+ product.name +'</p><p style="text-align: center; color: #e60e45; font-size: 16px; font-weight: 700;">$'+ product.price +'</p></a>')
+                    })
+                    $('.your-class').slick({
+                        "infinite": false,
+                        "mobileFirst": true,
+                        "slidesToShow": 5,
+                        "slidesToScroll": 1,
+                        "dots": false
+                    });
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+    });
+</script>
+<script>
+window.dataLayer.push({
+'productId': {{product.id}}
+});
+</script>
+
+<script>
+window.dataLayer.push({
+'productPrice': {{product.price.without_tax.value}}
+});
+</script>
+
+<script type="text/javascript">
+fbq('track', 'ViewContent', {"content_ids":["{{product.id}}"],"content_type":"product","value":{{product.price.without_tax.value}},"currency":"USD"});
+</script>
+{{/partial}}
+{{> layout/base}}

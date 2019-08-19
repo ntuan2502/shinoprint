@@ -1,0 +1,16 @@
+// =============================================================================
+// GRID (CSS)
+// =============================================================================
+
+%chiara-container {
+	@include container;
+}
+
+.container {
+    @extend %chiara-container;
+
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

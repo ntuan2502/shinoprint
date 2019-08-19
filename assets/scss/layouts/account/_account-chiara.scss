@@ -1,0 +1,11 @@
+.account-head {
+    @media (max-width: screenSize("medium") - 1px) {
+        margin-bottom: spacing("single");
+    }
+}
+
+
+.account-body {
+    margin-left: 0;
+    margin-right: 0;
+}

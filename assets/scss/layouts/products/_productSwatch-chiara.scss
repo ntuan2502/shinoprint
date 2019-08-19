@@ -1,0 +1,5 @@
+.form-option-expanded {
+    @media (max-width: screenSize("medium") - 1px) {
+        display: none;
+    }
+}

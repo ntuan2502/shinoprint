@@ -1,0 +1,10 @@
+.toggleLink-text {
+    font-size: fontSize("base") * 13/14;
+    color: $color-textLink;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+        color: $color-textLink-hover;
+    }
+}

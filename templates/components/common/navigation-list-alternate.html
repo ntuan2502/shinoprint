@@ -1,0 +1,14 @@
+{{#if children}}
+    <a class="navPages-action{{#unless ../noDepthMaxClass}} navPages-action-depth-max{{/unless}} has-subMenu is-root{{#if is_active}} activePage{{/if}}" href="{{url}}" data-collapsible="navPages-{{id}}{{#if ../idSuffix}}{{../../idSuffix}}{{/if}}"
+        {{#if theme_settings.navigation_hover}}
+            data-collapsible-disabled-breakpoint="large"
+            data-collapsible-disabled-state="open"
+            data-collapsible-enabled-state="closed"
+        {{/if}}
+    >
+        {{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+    </a>
+    {{> components/common/navigation-dropdown idSuffix=../idSuffix noDepthMaxClass=../noDepthMaxClass}}
+{{else}}
+    <a class="navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
+{{/if}}

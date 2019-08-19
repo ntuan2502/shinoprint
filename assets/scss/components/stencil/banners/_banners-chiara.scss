@@ -1,0 +1,10 @@
+.banners {
+    background-color: stencilColor("topBanner-bgColor");
+    color: stencilColor("topBanner-color");
+    padding-left: $container-padding / 2;
+    padding-right: $container-padding / 2;
+    
+    a {
+        color: stencilColor("topBanner-color-link");
+    }
+}

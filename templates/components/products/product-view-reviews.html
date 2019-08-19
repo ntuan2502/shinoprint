@@ -1,0 +1,50 @@
+{{#if settings.show_product_reviews}}
+{{#if product.reviews.total '>' 0}}
+<section class="productView-reviews {{#if theme_settings.productpage_reviews_tab}}productView-reviews--{{theme_settings.productpage_tabs_type}} productView-tab-content{{else}}productView-reviews--full{{/if}}" id="product-tab-reviews-{{product.id}}">
+    <div class="productView-reviews-heading-toggle" 
+        data-collapsible="productView-reviews-{{product.id}}" 
+        data-collapsible-disabled-breakpoint="medium"
+        data-collapsible-disabled-state="closed"
+        data-group-collapsible="main">
+        <h3 class="productView-reviews-heading">{{lang 'products.reviews.header' total=product.reviews.total}}</h3>
+        <span class="productView-reviews-heading-viewall">{{lang 'common.view_all'}}</span>
+    </div>
+    <div class="productView-reviews-contentSummary">
+        <ul class="productReviews-list">
+            {{#each (limit product.reviews.list 2)}}
+            <li class="productReview">
+                <article>
+                    <header>
+                        {{#if name}}
+                            <p class="productReview-author">
+                                {{lang 'products.reviews.post_on_by' date=date name=name }}
+                            </p>
+                        {{else}}
+                            <p class="productReview-author">
+                                {{lang 'products.reviews.post_on_by' date=date name=(lang 'products.reviews.anonymous_poster')}}
+                            </p>
+                        {{/if}}
+                        <span class="productReview-rating rating--small">
+                            {{> components/products/ratings rating=rating}}
+                            <span class="productReview-ratingNumber">{{ rating }}</span>
+                        </span>
+                    </header>
+                    <div class="productReview-body">
+                        <h5 class="productReview-title">{{ title }}</h5>
+                        <p class="productReview-content">{{nl2br text}}</p>
+                    </div>
+                </article>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    <div class="productView-reviews-content" id="productView-reviews-{{product.id}}">
+        <h4 class="productView-reviews-panel-heading">{{lang 'products.reviews.header' total=product.reviews.total}}</h4>
+        <a class="mobile-panel-close" data-collapsible="productView-reviews-{{product.id}}" data-group-collapsible="main"><svg><use xlink:href="#icon-close" /></svg></a>
+        <div class="productView-reviews-panel-body" data-lock-body-scroll>
+            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+        </div>
+    </div>
+</section>
+{{/if}}
+{{/if}}

@@ -1,0 +1,16 @@
+{{{ snippet "forms_search"}}}
+<a class="modal-close mobileOnly" aria-label="{{lang 'common.close'}}" data-drop-down-close role="button">
+    <span aria-hidden="true">&#215;</span>
+</a>
+<form class="form" action="{{urls.search}}">
+    <fieldset class="form-fieldset">
+        <div class="form-field">
+            <label class="is-srOnly" for="search_query">{{lang "search.quick_search.input_label"}}</label>
+            <input class="form-input" data-search-quick name="search_query" id="search_query{{idPrefix}}" data-error-message="{{lang 'search.error.empty_field'}}" placeholder="{{lang 'search.quick_search.input_placeholder'}}" autocomplete="off"
+                {{#if forms.search.query}} value="{{forms.search.query}}"{{/if}}>
+        </div>
+    </fieldset>
+</form>
+<div class="container">
+    <section class="quickSearchResults" data-bind="html: results"></section>
+</div>

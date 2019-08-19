@@ -1,0 +1,22 @@
+<a class="mobileSidebar-toggle" href="#" 
+    data-collapsible="mobileSidebar-panel" 
+    data-collapsible-disabled-breakpoint="medium"
+    data-collapsible-disabled-state="closed"
+    data-group-collapsible="main">
+    <span class="is-srOnly">{{lang 'search.faceted.show-filters'}}</span>
+    <i class="icon on" aria-hidden="true">{{lang 'search.faceted.toggle_on'}}</i>
+    <i class="icon off" aria-hidden="true"><svg><use xlink:href="#icon-close" /></svg></i>
+</a>
+<aside class="page-sidebar mobileSidebar-panel" id="mobileSidebar-panel">
+    <h4 class="mobile-panel-heading"><span class="mobile-panel-heading-ellipse">{{lang 'search.faceted.browse-by'}}</span></h4>
+    <a class="mobile-panel-close" href="#" data-collapsible="mobileSidebar-panel" data-group-collapsible="main"><svg><use xlink:href="#icon-close" aria-hidden="true"></use></svg></a>
+    <div id="faceted-search-container" data-lock-body-scroll>
+        {{#if page_type '==' 'search'}}
+            {{> components/search/sidebar}}
+        {{else if page_type '==' 'brand'}}
+            {{> components/brand/sidebar}}
+        {{else}}
+            {{> components/category/sidebar}}
+        {{/if}}
+    </div>
+</aside>

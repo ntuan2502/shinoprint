@@ -1,0 +1,17 @@
+<section class="productCarousel"
+    data-slick='{
+        "arrows": true,
+        "infinite": true,
+        "mobileFirst": true,
+        "slidesToShow": 2,
+        "slidesToScroll": 2,
+        "autoplay": true,
+        "autoplaySpeed": 2000
+    }'
+>
+    {{#each category.products}}
+    <div class="productCarousel-slide wow fadeInUp" data-wow-delay="{{multiply @index 100}}ms">
+        {{>components/products/card show_compare=false show_rating=../settings.show_product_rating theme_settings=../theme_settings customer=../customer show_wishlist=../settings.show_wishlist}}
+    </div>
+    {{/each}}
+</section>

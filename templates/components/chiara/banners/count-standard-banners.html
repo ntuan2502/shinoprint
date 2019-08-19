@@ -1,0 +1,10 @@
+{{#if (merge banners top_count=0)}}{{/if}}
+{{#if banners.top_metadata}}
+    {{#each banners.top_metadata}}
+        {{#unless (occurrences this.content 'data-remote-banner-position')}}
+            {{#unless (occurrences this.content 'data-local-banner-position')}}
+                {{#if (merge ../../../banners top_count=(add ../../../banners.top_count 1))}}{{/if}}
+            {{/unless}}
+        {{/unless}}
+    {{/each}}
+{{/if}}

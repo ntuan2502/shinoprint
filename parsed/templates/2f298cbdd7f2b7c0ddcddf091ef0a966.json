@@ -1,0 +1,1 @@
+{"components/common/login-for-pricing":"<a class=\"price--login\" href=\"{{urls.auth.login}}\" translate>Log in for pricing</a>\n"}

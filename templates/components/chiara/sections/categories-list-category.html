@@ -1,0 +1,19 @@
+{{#if theme_settings.home_cats_show_banner}}
+    {{#if index '<' 10}}
+    <div class="chiara-categoriesList-banner"><img src="{{cdn 'img/loading.svg'}}" data-src="{{get (concat 'home_cats_banner' index) theme_settings}}" alt="{{category.name}}" class="lazyload"></div>
+    {{else}}
+        <div class="chiara-categoriesList-banner"><img src="{{cdn 'img/loading.svg'}}" data-src="/product_images/uploaded_images/{{concat 'home-cat' (add index 1)}}.jpg?c=2" alt="{{category.name}}" class="lazyload"></div>
+    {{/if}}
+{{/if}}
+<div class="chiara-categoriesList-content">
+    <h3 class="chiara-categoriesList-name"><a href="{{category.url}}">{{category.name}}</a></h3>
+    {{#if theme_settings.home_cats_sub_count '>' 0}}
+    {{#if category.children}}
+    <ul class="chiara-categoriesList-subList">
+        {{#each (limit category.children theme_settings.home_cats_sub_count)}}
+        <li class="chiara-categoriesList-subList-item"><a href="{{url}}">{{name}}</a></li>
+        {{/each}}
+    </ul>
+    {{/if}}
+    {{/if}}
+</div>

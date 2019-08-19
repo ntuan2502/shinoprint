@@ -1,0 +1,25 @@
+.breadcrumbs {
+    text-align: left;
+    margin-bottom: spacing("half");
+
+    @include breakpoint("medium") {
+        margin-bottom: spacing("single");
+    }
+}
+
+// On Mobile
+@media (max-width: screenSize("medium") - 1px) {
+    .breadcrumbs {
+        display: block;
+        margin: 0 (-(container("padding")) / 2) spacing("half");
+        padding: spacing("quarter") container("padding") / 2;
+        background-color: container("fill", "dark");
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .breadcrumb {
+        display: inline;
+    }
+}

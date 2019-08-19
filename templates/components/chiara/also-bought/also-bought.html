@@ -1,0 +1,28 @@
+<section class="productView-alsoBought u-hiddenVisually" data-also-bought>
+    <div class="productView-alsoBought-heading">{{lang 'also_bought.heading'}}</div>
+    <div class="productView-alsoBought-thumbnails" data-thumbnails></div>
+    <div class="productView-alsoBought-buttons">
+        <a class="button button--small button--primary" href="#" data-add-all>{{lang 'also_bought.add_all'}}</a>
+    </div>
+    <div class="productView-alsoBought-list">
+        {{#if theme_settings.alsobought_product '==' 'related'}}
+            {{#each product.related_products}}
+                <div class="productView-alsoBought-item" data-product-id="{{id}}"></div>
+                {{inject 'enableAlsoBought' true}}
+            {{/each}}
+        {{else if theme_settings.alsobought_product '==' 'similar'}}
+            {{#each product.similar_by_views}}
+                <div class="productView-alsoBought-item" data-product-id="{{id}}"></div>
+                {{inject 'enableAlsoBought' true}}
+            {{/each}}
+        {{else}}
+            {{#each product.custom_fields}}
+                {{#if name '===' '__alsobought'}}
+                    <div class="productView-alsoBought-item" data-product-id="{{value}}"></div>
+                    {{inject 'enableAlsoBought' true}}
+                {{/if}}
+            {{/each}}
+        {{/if}}
+    </div>
+</section>
+{{inject 'enableAlsoBought' true}}

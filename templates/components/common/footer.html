@@ -1,0 +1,229 @@
+{{#if banners.bottom_metadata}}
+    {{#if settings.data_tag_enabled}}
+        <div class="banners" data-banner-location="bottom">
+            {{#each (limit banners.bottom_metadata 1)}}
+                <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+                    <div data-event-type="promotion-click">
+                        {{{this.content}}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{else}}
+        <div class="banners" data-banner-location="bottom">
+            <div class="banner">
+                {{#each (limit banners.bottom_metadata 1)}}
+                    {{{this.content}}}
+                {{/each}}
+            </div>
+        </div>
+    {{/if}}
+
+{{/if}}
+
+<footer class="footer" role="contentinfo">
+    {{#if settings.show_newsletter_box}}
+    {{#if theme_settings.footer_newsletter_position '===' 'top'}}
+    <div class="footer-newsletterTop">
+        <div class="container">
+            {{> components/chiara/common/footer-newsletter}}
+        </div>
+    </div>
+    {{/if}}
+    {{/if}}
+
+    <div class="container">
+        {{#block "chiara-footer-info"}}
+        <section class="footer-info">
+            <div class="footer-info-left">
+                {{#all theme_settings.footer_webpages_limit (if theme_settings.footer_webpages_limit '!=' '0')}}
+                <article class="footer-info-col footer-info-col--webpages" data-section-type="footer-webPages">
+                    <h5 class="footer-info-heading" 
+                        data-collapsible="footer-info-list-webpages"
+                        data-collapsible-disabled-breakpoint="medium"
+                        data-collapsible-disabled-state="open"
+                        data-collapsible-enabled-state="closed">{{theme_settings.footer_webpages_heading}}</h5>
+                    <ul class="footer-info-list" id="footer-info-list-webpages">
+                        {{#each (limit pages theme_settings.footer_webpages_limit)}}
+                        <li><a href="{{url}}">{{name}}</a></li>
+                        {{/each}}
+                    </ul>
+                </article>
+                {{/all}}
+
+                {{#all theme_settings.footer_categories_limit (if theme_settings.footer_categories_limit '!=' '0')}}
+                <article class="footer-info-col footer-info-col--categories" data-section-type="footer-categories">
+                    <h5 class="footer-info-heading"
+                        data-collapsible="footer-info-list-categories"
+                        data-collapsible-disabled-breakpoint="medium"
+                        data-collapsible-disabled-state="open"
+                        data-collapsible-enabled-state="closed">{{theme_settings.footer_categories_heading}}</h5>
+                    <ul class="footer-info-list" id="footer-info-list-categories">
+                        {{#each (limit categories theme_settings.footer_categories_limit)}}
+                        <li><a href="{{url}}">{{name}}</a></li>
+                        {{/each}}
+                    </ul>
+                </article>
+                {{/all}}
+
+                {{#all theme_settings.footer_brands_limit (if theme_settings.footer_brands_limit '!=' '0')}}
+                <article class="footer-info-col footer-info-col--brands" data-section-type="footer-brands">
+                    <h5 class="footer-info-heading"
+                        data-collapsible="footer-info-list-brands"
+                        data-collapsible-disabled-breakpoint="medium"
+                        data-collapsible-disabled-state="open"
+                        data-collapsible-enabled-state="closed">{{theme_settings.footer_brands_heading}}</h5>
+                    <ul class="footer-info-list" id="footer-info-list-brands">
+                        {{#each (limit shop_by_brand theme_settings.footer_brands_limit)}}
+                        <li><a href="{{url}}">{{name}}</a></li>
+                        {{/each}}
+                        <li><a href="{{urls.brands}}">{{lang 'brand.view_brands'}}</a></li>
+                    </ul>
+                </article>
+                {{/all}}
+
+                {{#if theme_settings.footer_show_custom1}}
+                <article class="footer-info-col footer-info-col--custom1" data-section-type="footer-custom1">
+                    <h5 class="footer-info-heading"
+                        data-collapsible="footer-info-list-custom1"
+                        data-collapsible-disabled-breakpoint="medium"
+                        data-collapsible-disabled-state="open"
+                        data-collapsible-enabled-state="closed">{{theme_settings.footer_custom1_heading}}</h5>
+                    <ul class="footer-info-list" id="footer-info-list-custom1">
+                        {{#if theme_settings.footer_custom1_title1}}
+                        <li><a href="{{theme_settings.footer_custom1_link1}}">{{theme_settings.footer_custom1_title1}}</a></li>
+                        {{/if}}
+                        {{#if theme_settings.footer_custom1_title2}}
+                        <li><a href="{{theme_settings.footer_custom1_link2}}">{{theme_settings.footer_custom1_title2}}</a></li>
+                        {{/if}}
+                        {{#if theme_settings.footer_custom1_title3}}
+                        <li><a href="{{theme_settings.footer_custom1_link3}}">{{theme_settings.footer_custom1_title3}}</a></li>
+                        {{/if}}
+                        {{#if theme_settings.footer_custom1_title4}}
+                        <li><a href="{{theme_settings.footer_custom1_link4}}">{{theme_settings.footer_custom1_title4}}</a></li>
+                        {{/if}}
+                        {{#if theme_settings.footer_custom1_title5}}
+                        <li><a href="{{theme_settings.footer_custom1_link5}}">{{theme_settings.footer_custom1_title5}}</a></li>
+                        {{/if}}
+                        {{#if theme_settings.footer_custom1_title6}}
+                        <li><a href="{{theme_settings.footer_custom1_link6}}">{{theme_settings.footer_custom1_title6}}</a></li>
+                        {{/if}}
+                    </ul>
+                </article>
+                {{/if}}
+
+                {{#if theme_settings.footer_show_custom2}}
+                <article class="footer-info-col footer-info-col--custom2" data-section-type="footer-custom2">
+                    <h5 class="footer-info-heading"
+                        data-collapsible="footer-info-list-custom2"
+                        data-collapsible-disabled-breakpoint="medium"
+                        data-collapsible-disabled-state="open"
+                        data-collapsible-enabled-state="closed">{{theme_settings.footer_custom2_heading}}</h5>
+                    <ul class="footer-info-list" id="footer-info-list-custom2">
+                        {{#if theme_settings.footer_custom2_title1}}
+                        <li><a href="{{theme_settings.footer_custom2_link1}}">{{theme_settings.footer_custom2_title1}}</a></li>
+                        {{/if}}
+                        {{#if theme_settings.footer_custom2_title2}}
+                        <li><a href="{{theme_settings.footer_custom2_link2}}">{{theme_settings.footer_custom2_title2}}</a></li>
+                        {{/if}}
+                        {{#if theme_settings.footer_custom2_title3}}
+                        <li><a href="{{theme_settings.footer_custom2_link3}}">{{theme_settings.footer_custom2_title3}}</a></li>
+                        {{/if}}
+                        {{#if theme_settings.footer_custom2_title4}}
+                        <li><a href="{{theme_settings.footer_custom2_link4}}">{{theme_settings.footer_custom2_title4}}</a></li>
+                        {{/if}}
+                        {{#if theme_settings.footer_custom2_title5}}
+                        <li><a href="{{theme_settings.footer_custom2_link5}}">{{theme_settings.footer_custom2_title5}}</a></li>
+                        {{/if}}
+                        {{#if theme_settings.footer_custom2_title6}}
+                        <li><a href="{{theme_settings.footer_custom2_link6}}">{{theme_settings.footer_custom2_title6}}</a></li>
+                        {{/if}}
+                    </ul>
+                </article>
+                {{/if}}
+
+                {{#if theme_settings.footer_show_custom3}}
+                <article class="footer-info-col footer-info-col--custom3" data-section-type="footer-custom3">
+                    <h5 class="footer-info-heading"
+                        data-collapsible="footer-info-list-custom3"
+                        data-collapsible-disabled-breakpoint="medium"
+                        data-collapsible-disabled-state="open"
+                        data-collapsible-enabled-state="closed">{{theme_settings.footer_custom3_heading}}</h5>
+                    <ul class="footer-info-list" id="footer-info-list-custom3">
+                        {{#if theme_settings.footer_custom3_title1}}
+                        <li><a href="{{theme_settings.footer_custom3_link1}}">{{theme_settings.footer_custom3_title1}}</a></li>
+                        {{/if}}
+                        {{#if theme_settings.footer_custom3_title2}}
+                        <li><a href="{{theme_settings.footer_custom3_link2}}">{{theme_settings.footer_custom3_title2}}</a></li>
+                        {{/if}}
+                        {{#if theme_settings.footer_custom3_title3}}
+                        <li><a href="{{theme_settings.footer_custom3_link3}}">{{theme_settings.footer_custom3_title3}}</a></li>
+                        {{/if}}
+                        {{#if theme_settings.footer_custom3_title4}}
+                        <li><a href="{{theme_settings.footer_custom3_link4}}">{{theme_settings.footer_custom3_title4}}</a></li>
+                        {{/if}}
+                        {{#if theme_settings.footer_custom3_title5}}
+                        <li><a href="{{theme_settings.footer_custom3_link5}}">{{theme_settings.footer_custom3_title5}}</a></li>
+                        {{/if}}
+                        {{#if theme_settings.footer_custom3_title6}}
+                        <li><a href="{{theme_settings.footer_custom3_link6}}">{{theme_settings.footer_custom3_title6}}</a></li>
+                        {{/if}}
+                    </ul>
+                </article>
+                {{/if}}
+            </div>
+            {{#any settings.show_newsletter_box (if theme_settings.social_icon_placement_bottom '!==' 'bottom_none')}}
+            <div class="footer-info-right">
+                {{#if settings.show_newsletter_box}}
+                {{#if theme_settings.footer_newsletter_position '===' 'right'}}
+                    {{> components/chiara/common/footer-newsletter}}
+                {{/if}}
+                {{/if}}
+                {{#if theme_settings.social_icon_placement_bottom '!==' 'bottom_none'}}
+                <article class="footer-info-col footer-info-col--socials" data-section-type="newsletterSubscription">
+                    <h5 class="footer-info-heading">{{lang 'social.connect'}}</h5>
+                    {{> components/common/social-links}}
+
+                    {{#if theme_settings.payment_icons_position '===' 'footer_right'}}
+                        <h5 class="footer-info-heading">{{lang 'footer.accept_payments'}}</h5>
+                        {{> components/common/payment-icons}}
+
+                        {{#if theme_settings.geotrust_ssl_common_name}}
+                            <div class="footer-geotrust-ssl-seal">
+                                {{> components/common/geotrust-ssl-seal}}
+                            </div>
+                        {{/if}}
+                    {{/if}}
+                </article>
+                {{/if}}
+            </div>
+            {{/any}}
+        </section>
+        {{/block}}
+    </div>
+
+    {{#block "chiara-footer-copyright"}}
+    <div class="footer-copyright">
+        <div class="container">
+            {{#if theme_settings.payment_icons_position '===' 'copyright_left'}}
+            <section class="footer-icons">
+                {{> components/common/payment-icons}}
+    
+                {{#if theme_settings.geotrust_ssl_common_name}}
+                    <div class="footer-geotrust-ssl-seal">
+                        {{> components/common/geotrust-ssl-seal}}
+                    </div>
+                {{/if}}
+            </section>
+            {{/if}}
+                
+            {{#if theme_settings.show_copyright_footer}}
+                <p class="powered-by">&copy; {{moment format="YYYY"}} {{settings.store_name}}.</p>
+            {{/if}}
+            {{#if theme_settings.show_powered_by}}
+                <p class="powered-by">Powered by <a href="https://www.bigcommerce.com?utm_source=merchant&amp;utm_medium=poweredbyBC" rel="nofollow">BigCommerce</a>. Theme by <a href="https://papathemes.com?utm_source=merchant&amp;utm_medium=poweredbyBC" rel="nofollow">Papathemes</a>.</p>
+            {{/if}}
+        </div>
+    </div>
+    {{/block}}
+</footer>

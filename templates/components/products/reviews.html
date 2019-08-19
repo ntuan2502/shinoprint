@@ -1,0 +1,38 @@
+{{#if reviews.total}}
+{{#unless noSection}}
+<section class="productReviews" id="product-reviews" data-product-reviews>
+{{/unless}}
+    <ul class="productReviews-list">
+        {{#each reviews.list}}
+        <li class="productReview">
+            <article itemprop="review" itemscope itemtype="http://schema.org/Review">
+                <header>
+                    {{#if name}}
+                        <meta itemprop="author" content="{{name}}">
+                        <p class="productReview-author">
+                            {{lang 'products.reviews.post_on_by' date=date name=name }}
+                        </p>
+                    {{else}}
+                        <p class="productReview-author">
+                            {{lang 'products.reviews.post_on_by' date=date name=(lang 'products.reviews.anonymous_poster')}}
+                        </p>
+                    {{/if}}
+                    <span class="productReview-rating rating--small" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                        {{> components/products/ratings rating=rating}}
+                        <span class="productReview-ratingNumber" itemprop="ratingValue">{{ rating }}</span>
+                    </span>
+                </header>
+                <div class="productReview-body">
+                    <h5 itemprop="name" class="productReview-title">{{ title }}</h5>
+                    <p itemprop="reviewBody" class="productReview-content">{{nl2br text}}</p>
+                </div>
+            </article>
+        </li>
+        {{/each}}
+    </ul>
+    {{> components/common/paginator pagination.reviews}}
+{{#unless noSection}}
+</section>
+{{/unless}}
+{{/if}}
+{{{snippet 'reviews'}}}

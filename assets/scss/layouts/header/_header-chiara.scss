@@ -1,0 +1,301 @@
+.header {
+    z-index: zIndex("low");
+    box-shadow: 0 0 15px rgba($color-black, .1);
+
+    @include breakpoint("medium") {
+        box-shadow: none;
+    }
+
+    &.is-open {
+        .header-main {
+            border-bottom: container("border");
+        }
+    }
+
+    &.is-sticky {
+        @include u-is-sticky;
+    }
+}
+
+.header-logo {
+    a {
+        @media(max-width: screenSize("medium") - 1px) {
+            width: 100%;
+            min-height: $header-height;
+            display: flex;
+            align-items: center;
+            
+        }
+    }
+}
+
+.header-logo-text {
+    @media(max-width: screenSize("medium") - 1px) {
+        letter-spacing: 0;
+    }
+}
+
+.navPages-container {
+    @include breakpoint("medium") {
+        position: static;
+    }
+}
+
+.header-main-container {
+    @extend %chiara-container;
+    position: static;
+
+    @include breakpoint("medium") {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        width: layout("fixed");
+        padding-top: 0;
+        padding-bottom: 0;
+
+        .header-logo {
+            margin: 0;
+        }
+
+        .navPages-container {
+            order: 2;
+            margin: 0 auto;
+            padding: 0 spacing("single");
+        }
+        
+        .navUser {
+            order: 3;
+            margin: 0;
+            width: auto;
+        }
+    }
+}
+
+.header-main-container--left {
+    .header-logo {
+        @include breakpoint("medium") {
+            order: 1;
+        }
+    }
+}
+
+.header-main-container--right {
+    .header-logo {
+        @include breakpoint("medium") {
+            order: 4;
+        }
+    }
+
+    .navUser {
+        @include breakpoint("medium") {
+            order: 1;
+        }
+    }
+}
+
+.header-main-container--center {
+    .header-logo {
+        @include breakpoint("medium") {
+            order: 2;
+            @if stencilString("logo_size") == "original" {
+                width: remCalc(400);
+            }
+        }
+    }
+
+    .navPages-container {
+        @include breakpoint("medium") {
+            order: 1;
+            flex: 1;
+            padding: 0;
+            margin-left: -(spacing("half") + spacing("quarter"));
+        }
+    }
+
+    .navPages {
+        @include breakpoint("medium") {
+            text-align: left;
+        }
+    }
+
+    .navUser {
+        @include breakpoint("medium") {
+            order: 3;
+            flex: 1;
+        }
+    }
+
+    .navUser-section {
+        float: right;
+    }
+}
+
+.header-logo-image-container {
+    width: get-width(stencilString("logo_size"));
+    max-width: 100%;
+
+    @include breakpoint("medium") {
+        max-width: none;
+
+        .is-sticky &:after {
+            padding-bottom: (remCalc($header-height) - $header-logo-marginVertical * 2) * .75;
+        }
+    }
+}
+
+.header-logo-image {
+    transition: all .5s ease;
+    
+    .is-sticky & {
+        @include breakpoint("medium") {
+            transform: scale(.75);
+        }
+    }
+
+    .header-logo--left & {
+        transform-origin: left center;
+    }
+
+    .header-logo--right & {
+        transform-origin: right center;
+    }
+}
+
+
+// Top Header
+// ----------------------------------------------------------------------------
+
+.header-top {
+    display: none;
+    border-bottom: 1px solid rgba(stencilColor("navUser-color"), .1);
+    padding: spacing("third") 0;
+    color: stencilColor("navUser-color");
+
+    .is-sticky & {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    @include breakpoint("medium") {
+        display: block;
+    }
+}
+
+.header-top-container {
+    @include container;
+}
+
+.header-top-list {
+    list-style: none;
+    margin: 0;
+    display: flex;
+}
+
+.header-top-item {
+    margin: auto 0;
+    order: 15;
+    border-left: 1px solid rgba(stencilColor("navUser-color"), .1);
+    text-align: center;
+
+    &:first-child {
+        border-left: 0;
+        margin-left: auto;
+    }
+
+    .dropdown-menu {
+        top: calc(100% + #{spacing("quarter")}) !important;
+        z-index: zIndex("high") + 10; // higher than .navPages-container
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+.header-top-item--phone {
+    order: 1;
+    margin-left: 0 !important;
+
+    + .header-top-item {
+        margin-left: auto;
+    }
+}
+
+.header-top-item--address {
+    order: 5;
+    margin-left: 0 !important;
+
+    + .header-top-item {
+        margin-left: auto;
+    }
+}
+
+
+.header-top-item--banner {
+    margin: auto;
+    order: 10;
+    padding: 0 spacing("half");
+    border-left: 0;
+
+    .banner:last-child p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.header-top-action {
+    color: stencilColor("navUser-color");
+    text-decoration: none;
+    padding: spacing("quarter") spacing("half");
+    display: inline-block;
+    line-height: 1.15;
+
+    &:hover {
+        color: stencilColor("navUser-color-hover");
+
+        .icon svg {
+            fill: stencilColor("navUser-color-hover");
+        }
+    }
+
+    .icon {
+        @include square(8px);
+        margin-left: spacing("quarter");
+        margin-top: -2px;
+
+        svg {
+            fill: stencilColor("navUser-color");
+        }
+    }
+}
+
+
+
+// Pages that support displaying page heading on the header on mobile
+// ============================================================================
+
+.page-type-category,
+.page-type-brands,
+.page-type-brand,
+.page-type-page_contact_form,
+.page-type-blog,
+.page-type-giftcertificates,
+.page-type-giftcertificates_redeem,
+.page-type-giftcertificates_balance,
+.page-type-createaccount,
+.page-type-accountcreated,
+.page-type-forgotpassword,
+.page-type-newpassword,
+.page-type-login,
+.page-type-account_orderstatus,
+.page-type-account_order,
+.page-type-account_returns,
+.page-type-account_inbox,
+.page-type-account_addressbook,
+.page-type-wishlists,
+.page-type-account_recentitems,
+.page-type-editaccount,
+.page-type-cart {
+    @include body-page-heading-mobile;
+}

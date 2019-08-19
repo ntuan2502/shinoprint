@@ -1,0 +1,35 @@
+.mobileSortBy-toggle {
+    @extend %mobile-toggle-floating-button;
+    bottom: $header-height + 120px;
+}
+
+.mobileSortBy-panel {
+    @extend %mobile-panel;
+
+    @include breakpoint("medium") {
+        display: none;
+    }
+}
+
+.mobileSortBy-panel-body {
+    @extend %mobile-panel-body;
+
+    display: flex;
+    align-items: center;
+
+    .navList {
+        margin: auto 0;
+        width: 100%;
+    }
+
+    .navList-item {
+        text-align: center;
+    }
+}
+
+@media (max-width: screenSize("medium") - 1px) {
+    .has-mobileSortBy {
+        overflow: hidden;
+    }
+}
+

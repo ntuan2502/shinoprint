@@ -1,0 +1,9 @@
+// Form labels (inline small text)
+// -----------------------------------------------------------------------------
+
+.form-label--inlineSmall {
+    small {
+        color: $color-error;
+        margin-left: 0;
+    }
+}

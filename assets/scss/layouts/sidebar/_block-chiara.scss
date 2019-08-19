@@ -1,0 +1,157 @@
+// =============================================================================
+// SIDEBAR BLOCKS (CSS)
+// =============================================================================
+
+
+// Block
+// -----------------------------------------------------------------------------
+
+.sidebarBlock-heading {
+    font-family: $body-font-family;
+    font-weight: fontWeight("semibold");
+    font-size: fontSize("smaller");
+    text-transform: uppercase;
+    margin-bottom: spacing("single");
+
+    &:after {
+        content: ' ';
+        display: block;
+        width: 40px;
+        height: 0;
+        border-bottom: 2px solid $color-textBase;
+        margin-top: spacing("quarter");
+    }
+
+
+}
+
+.sidebarBlock--subcategories {
+    .navList-action {
+        text-transform: uppercase;
+    }
+}
+
+.sidebarBlock + .sidebarBlock {
+    margin-top: spacing("single");
+    padding-top: spacing("single");
+}
+
+
+.sidebarBlock--categories {
+    .navList-action {
+        font-weight: stencilFontWeight("headings-font");
+    }
+
+    .navList {
+        .navList .navList-action {
+            font-weight: inherit;
+
+            &.is-active {
+                font-weight: fontWeight("bold");
+            }
+        }
+    }
+
+    @media (max-width: screenSize("medium") - 1px) {
+        display: none;
+    }
+}
+
+.sidebarBlock--banner {
+    @media (max-width: screenSize("medium") - 1px) {
+        display: none;
+    }
+}
+
+.sidebarBlock--products {
+    @media (max-width: screenSize("medium") - 1px) {
+        display: none;
+    }
+}
+
+.sidebarBlock--fbPage {
+    @media (max-width: screenSize("medium") - 1px) {
+        display: none;
+    }
+}
+
+// Products List on sidebar
+// ============================================================================
+
+.sidebarBlock .productGrid--maxCol1 {
+    padding-top: spacing("third");
+
+    .product {
+        font-size: fontSize("base") * 13/14;
+
+        + .product {
+            margin-top: spacing("single");
+        }
+    }
+
+    .card-body {
+        padding-left: spacing("base");
+
+        .rrp-price--withoutTax {
+            font-size: inherit;
+        }
+
+        .price--main {
+            font-size: inherit;
+            font-weight: fontWeight("semibold");
+        }
+
+        .non-sale-price--withoutTax .price, 
+        .non-sale-price--withTax .price {
+            font-size: inherit;
+        }
+
+        > :first-child {
+            margin-top: spacing("third");
+        }
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .card-title {
+        font-size: fontSize("base") * 13/14;
+        margin-bottom: spacing("third");
+    }
+
+    .card-text {
+        margin-bottom: spacing("third");
+    }
+
+    .sale-flag-side {
+        $fs: 8px;
+        $lh: 1.25;
+        $pd-top: spacing("eighth") / 2;
+        $h_s: remCalc($fs * $lh) + $pd-top * 2 + spacing("eighth");
+
+        font-size: remCalc(8px);
+        top: 0;
+        left: 0;
+
+        + .sale-flag-side {
+            top: $h_s;
+        }
+
+        + .sale-flag-side + .sale-flag-side {
+            top: $h_s * 2;
+        }
+
+        + .sale-flag-side + .sale-flag-side + .sale-flag-side {
+            top: $h_s * 3;
+        }
+    }
+
+    .sale-flag-side--custom {
+        display: none;
+    }
+
+    .sale-flag-side--outstock {
+        white-space: nowrap;
+    }
+}

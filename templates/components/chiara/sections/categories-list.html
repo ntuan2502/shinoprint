@@ -1,0 +1,54 @@
+{{#or theme_settings.home_cats_show theme_settings.home_cats_show_sm theme_settings.home_cats_show_md}}
+    {{#if (merge this home_cats_index=0)}}{{/if}}
+    {{#or theme_settings.home_cats_id theme_settings.home_cats_count}}
+        {{#if theme_settings.home_cats_count '!=' '0'}}
+            {{#block "chiara-categories-list"}}
+            <div class="chiara-section chiara-section--categoriesList
+                {{#unless theme_settings.home_cats_show}}u-hiddenVisually-desktop{{/unless}}
+                {{#unless theme_settings.home_cats_show_md}}u-hiddenVisually-tablet{{/unless}}
+                {{#unless theme_settings.home_cats_show_sm}}u-hiddenVisually-mobile{{/unless}}">
+                <div class="chiara-categoriesList
+                    chiara-categoriesList--count-{{theme_settings.home_cats_count}}
+                    {{#if theme_settings.home_cats_show_banner}}chiara-categoriesList--hasBanner{{/if}}
+                    {{#if theme_settings.home_cats_style}}chiara-categoriesList--style-{{theme_settings.home_cats_style}}{{/if}}">
+                    {{#if theme_settings.home_cats_heading}}
+                        <h3 class="page-heading">{{theme_settings.home_cats_heading}}</h3>
+                    {{/if}}
+                    {{#if theme_settings.home_cats_subheading}}
+                        <p class="page-subheading">{{theme_settings.home_cats_subheading}}</p>
+                    {{/if}}
+                    <div class="chiara-categoriesList-list">
+                        {{#if theme_settings.home_cats_id}}
+                            {{#each (split theme_settings.home_cats_id ",")}}
+                                {{#each ../categories}}
+                                    {{#if id '===' ../this}}
+                                        <div class="chiara-categoriesList-item">
+                                            {{> components/chiara/sections/categories-list-category category=this theme_settings=../../../theme_settings index=../../../this.home_cats_index}}
+                                        </div>
+                                        {{#if (merge ../../../this home_cats_index=(add ../../../this.home_cats_index 1))}}{{/if}}
+                                    {{/if}}
+                                    {{#each children}}
+                                        {{#if id '===' ../../this}}
+                                            <div class="chiara-categoriesList-item">
+                                                {{> components/chiara/sections/categories-list-category category=this theme_settings=../../../../theme_settings index=../../../../this.home_cats_index}}
+                                            </div>
+                                            {{#if (merge ../../../../this home_cats_index=(add ../../../../this.home_cats_index 1))}}{{/if}}
+                                        {{/if}}
+                                    {{/each}}
+                                {{/each}}
+                            {{/each}}
+                        {{else}}
+                            {{#each (limit categories theme_settings.home_cats_count)}}
+                                <div class="chiara-categoriesList-item">
+                                    {{> components/chiara/sections/categories-list-category category=this theme_settings=../theme_settings index=../this.home_cats_index}}
+                                </div>
+                                {{#if (merge ../this home_cats_index=(add ../this.home_cats_index 1))}}{{/if}}
+                            {{/each}}
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+            {{/block}}
+        {{/if}}
+    {{/or}}
+{{/or}}

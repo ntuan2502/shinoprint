@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{{> chiara-custom}}
+<html class="no-js" lang="{{ locale_name }}">
+    <head>
+        <title>{{ head.title }}</title>
+        {{{ resourceHints }}}
+        {{{ head.meta_tags }}}
+        {{{ head.config }}}
+        {{#block "head"}} {{/block}}
+
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <script>
+            // Change document class from no-js to js so we can detect this in css
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        </script>
+
+        <link href="{{cdn 'assets/vendor/fontawesome/css/fontawesome-all.min.css'}}" rel="stylesheet">
+        <link href="{{cdn 'assets/vendor/animate/animate.min.css'}}" rel="stylesheet">
+        {{{stylesheet '/assets/css/theme.css'}}}
+        {{ getFontsCollection }}
+
+        {{#block "head-after"}} {{/block}}
+
+        {{{head.scripts}}}
+        {{{head.rsslinks}}}
+
+        {{inject 'themeSettings' theme_settings}}
+        {{inject 'genericError' (lang 'common.generic_error')}}
+        {{inject 'maintenanceMode' settings.maintenance}}
+        {{inject 'urls' urls}}
+        {{inject 'secureBaseUrl' settings.secure_base_url}}
+        {{inject 'pageType' page_type}}
+        {{inject 'cartId' cart_id}}
+        {{inject 'template' template}}
+        {{{snippet 'htmlhead'}}}
+    </head>
+    <body class="{{#if theme_settings.navigation_hover}}navigation-hover{{/if}} page-type-{{page_type}}
+        {{#if theme_settings.product_outstock_badge}}theme-show-outstock-badge{{/if}}
+        {{#if theme_settings.header_sticky}}theme-header-sticky{{/if}}
+        ">
+        
+        <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZWQVV5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+            
+        {{#if theme_settings.fb_page '!==' ''}}
+            <!-- Facebook SDK -->
+            <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=378187145615477";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+        {{/if}}
+        
+        {{{snippet 'header'}}}
+        <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
+        <!-- {{!> components/common/icons/icon-chiara }} -->
+
+        {{#and settings.privacy_cookie settings.is_eu_ip_address}}
+            {{> components/common/cookie}}
+        {{/and}}
+
+        {{> components/common/header }}
+        {{> components/common/body }}
+        {{> components/common/footer }}
+
+        <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+        <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+        <script>
+            // Exported in app.js
+            window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+        </script>
+
+        {{{footer.scripts}}}
+        {{{snippet 'footer'}}}
+    </body>
+</html>

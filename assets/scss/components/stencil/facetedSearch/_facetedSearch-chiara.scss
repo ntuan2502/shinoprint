@@ -1,0 +1,31 @@
+.facetedSearch-refineFilters {
+    a {
+        font-size: fontSize("base") * 13/14;
+    }
+}
+
+.facetedSearch-clearLink {
+    font-size: fontSize("base") * 13/14;
+
+    .accordion-navigation-actions > & {
+        color: $color-textLink;
+
+        &:hover {
+            color: $color-textLink-hover;
+        }
+    
+        &:focus {
+            color: $color-textLink-active;
+        }
+    }
+}
+
+.facet-quick-heading {
+    margin-top: 0;
+}
+
+.facetedSearch-optionColumns {
+    @media (max-width: screenSize("medium") - 1px) {
+        column-count: 2;
+    }
+}

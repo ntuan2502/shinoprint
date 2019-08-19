@@ -1,0 +1,34 @@
+{{#each product.options}}
+    <div class="productCard-swatchList productCard-swatchList--{{dashcase display_name}}">
+    {{#if partial '===' 'swatch'}}
+        {{#each values}}
+                {{#if image}}
+                    <a class="productCard-colorSwatch" href="#" data-product-swatch-id="{{../../id}}" data-product-swatch-value="{{id}}"><img src="{{getImage image 'card_swatch_option_size'}}" alt="{{image.alt}}" title="{{label}}" /></a>
+                {{else}}
+                    <a class="productCard-colorSwatch" href="#" data-product-swatch-id="{{../../id}}" data-product-swatch-value="{{id}}">
+                        {{#if data.[2]}}
+                            <span class='productCard-colorSwatch-color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                            <span class='productCard-colorSwatch-color' title="{{this.label}}" style="background-color: #{{data.[1]}}"></span>
+                            <span class='productCard-colorSwatch-color' title="{{this.label}}" style="background-color: #{{data.[2]}}"></span>
+                        {{else}}
+                            {{#if data.[1]}}
+                                <span class='productCard-colorSwatch-color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                                <span class='productCard-colorSwatch-color' title="{{this.label}}" style="background-color: #{{data.[1]}}"></span>
+                            {{else}}
+                                {{#if data.[0]}}
+                                    <span class='productCard-colorSwatch-color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                                {{/if}}
+                            {{/if}}
+                        {{/if}}
+                    </a>
+                {{/if}}
+        {{/each}}
+    {{else}}
+        {{#each values}}
+            {{#if selected}}
+                <span style="display:none" data-product-attribute-id="{{../../id}}" data-product-attribute-value="{{id}}"></span>
+            {{/if}}
+        {{/each}}
+    {{/if}}
+    </div>
+{{/each}}

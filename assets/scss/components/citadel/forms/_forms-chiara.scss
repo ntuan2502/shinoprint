@@ -1,0 +1,136 @@
+.form-field {
+	@media (max-width: screenSize("medium") - 1px) {
+		margin-bottom: spacing("half");
+	}
+}
+
+.form-field--grid-list {
+	.form-label {
+		color: stencilColor("color-textSecondary");
+
+		* {
+			pointer-events: none;
+		}
+
+		.icon {
+			@media(max-width: screenSize("medium") - 1px) {
+				@include square(40);
+				padding: spacing("quarter");
+			}
+
+			svg {
+				fill: stencilColor("color-textSecondary");
+			}
+		}
+	}
+
+	.form-label:hover,
+	.form-label:focus {
+		color: stencilColor("color-textLink");
+
+		.icon svg {
+			fill: stencilColor("color-textLink");
+		}
+	}
+
+	input[type=radio] {
+		@include u-hidden("visually");
+
+		&:checked + .form-label {
+			color: stencilColor("color-textBase");
+
+			.icon svg {
+				fill: stencilColor("color-textBase");
+			}
+		}
+	}
+}
+
+.form-option { 
+	border: 1px solid rgba($input-border-color, 0.3);
+	box-shadow: 0 2px 4px rgba(stencilColor("color-black"), 0.1);
+}
+
+.form-radio:checked + .form-option {
+	border: 1px solid $input-border-color;
+}
+
+.form-option-variant {
+    padding: spacing("eighth") spacing("half");
+}
+
+.form-increment {
+	display: inline-block;
+	border-top: 1px solid $input-border-color;
+	border-bottom: 1px solid $input-border-color;
+	white-space: nowrap;
+	letter-spacing: -0.5em;
+	border-radius: $button-radius;
+    overflow: hidden;
+	font-size: 0;
+	box-shadow: 0 2px 4px rgba(stencilColor("color-black"), 0.1);
+
+	.button {
+		border-radius: 0;
+		border-top: 0;
+		border-bottom: 0;
+		border-color: $input-border-color;
+		padding: spacing("third");
+
+		&:first-child {
+			border-top-left-radius: $input-border-radius;
+			border-bottom-left-radius: $input-border-radius;
+		}
+
+		&:last-child {
+			border-top-right-radius: $input-border-radius;
+			border-bottom-right-radius: $input-border-radius;
+		}
+    }
+    
+    > * {
+        font-size: fontSize("base");
+    }
+}
+
+
+.form-input--incrementTotal {
+	width: spacing("double");
+	box-shadow: none;
+}
+
+
+.form-prefixPostfix {
+	.form-input {
+		@include breakpoint("small") {
+			width: auto;
+		}
+	}
+	.button {
+		@include breakpoint("small") {
+			width: auto;
+		}
+	}
+}
+.form-prefixPostfix-button--postfix {
+	@include breakpoint("small") {
+		margin: 0 0 0 spacing("half");
+	}
+}
+
+
+
+// ----------------------------------------------------------------------------
+// Gift Certification form
+// ----------------------------------------------------------------------------
+
+.gift-certificate-form {
+	.form-column {
+		.form-field:not(.form-field-group) {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+}
+
+

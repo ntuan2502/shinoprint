@@ -1,0 +1,173 @@
+
+// Quick Search
+// ============================================================================
+
+.quickSearchResults {
+    margin-top: 0;
+    padding: 0 spacing("half") spacing("single");
+
+    @include breakpoint("medium") {
+        padding: spacing("single") 0;
+    }
+
+    .modal-close {
+        top: spacing("half") + spacing("quarter");
+        right: spacing("single");
+    }
+
+    .productGrid {
+        border-top: container("border");
+    }
+}
+
+.quickSearchResults-more {
+    margin-left: spacing("single");
+}
+
+.quickSearchMessage {
+    margin: 0;
+    padding: spacing("single") 0;
+    text-align: left;
+    font-size: fontSize("base");
+}
+
+.dropdown--quickSearch {
+    padding: 0;
+    background: transparent;
+    opacity: 0;
+    transition: opacity .2s ease-in-out, left .01s ease-in-out .2s;
+
+    .modal-close.mobileOnly {
+        display: none;
+    }
+
+    .container {
+        padding: 0;
+    }
+
+    .form {
+        background-color: container("fill");
+        max-width: none;
+        width: 100%;
+        padding: spacing("single") 0;
+        box-shadow: 0 15px 30px rgba($color-black, .05);
+    }
+
+    .form-fieldset {
+        max-width: 60rem;
+        margin: 0 auto;
+    }
+
+    .quickSearchResults {
+        padding: 0 spacing("single");
+        background-color: container("fill");
+        box-shadow: 0 15px 30px rgba($color-black, .05);
+        margin-top: spacing("half");
+    }
+
+    .card {
+        margin-bottom: spacing("single");
+    }
+}
+
+.dropdown--quickSearch.is-open {
+    opacity: 1;
+    transition: opacity .2s ease-in-out, left .01s ease-in-out;
+}
+
+// On Mobile
+// ----------------------------------------------------------------------------
+
+@media(max-width: screenSize("medium") - 1px) {
+    .quickSearchResults {
+        .modal-close {
+            display: none;
+            
+        }
+    }
+
+    .dropdown--quickSearch {
+        position: fixed;
+        top: 0;
+        bottom: $header-height;
+
+        .modal-close.mobileOnly {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            border: 0;
+        }
+
+        .container {
+            position: static;
+        }
+
+        .quickSearchResults {
+            position: absolute;
+            top: $header-height;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 0;
+            border-top: container("border");
+            padding: 0;
+        }
+
+        .quickSearchResults-more {
+            margin-left: 0;
+            text-align: right;
+        }
+
+        .quickSearchMessage {
+            padding: 0 spacing("half");
+            height: spacing("double");
+            overflow: auto;
+            line-height: spacing("double");
+            white-space: nowrap;
+            display: grid;
+            grid-column-gap: spacing("half");
+            grid-template-columns: auto auto;
+        }
+
+        .productGrid {
+            margin: 0;
+            padding: spacing("half") spacing("quarter");
+            position: absolute;
+            top: spacing("double");
+            bottom: 0;
+            left: 0;
+            right: 0;
+            overflow: auto;;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .form {
+            position: absolute;
+            padding: 0;
+            margin: 0;
+            // width: calc(100vw - #{$navUser-icon-fontSize} - #{spacing("half") * 2});
+            top: 0;
+            left: $header-height;
+            right: 0;
+            width: auto;
+            height: $header-height;
+            transform: none;
+            display: flex;
+            align-items: center;
+            background-color: $header-bg;
+            box-shadow: none;
+        }
+
+        .form-fieldset {
+            max-width: none;
+            width: 100%;
+        }
+
+        .form-input {
+            border: 0;
+            background-color: transparent;
+            box-shadow: none;
+        }
+    }
+}

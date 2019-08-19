@@ -1,0 +1,94 @@
+.chiara-aboutBanner {
+    @include breakpoint("medium") {
+        position: relative;
+        margin-left: -$container-padding;
+        margin-right: -$container-padding;
+    }
+
+    @include breakpoint("large") {
+        width: calc(100vw - 20px);
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+.chiara-aboutBanner-img {
+    text-align: center;
+
+    a {
+        display: inline-block;
+    }
+}
+
+.chiara-aboutBanner-content {
+    @include breakpoint("medium") {
+        position: absolute;
+        top: 0;
+        width: layout("max") - $container-padding * 4;
+        max-width: calc(100vw - 20px);
+        left: 50%;
+        margin-left: -(layout("max") - $container-padding * 4) / 2;
+    }
+}
+
+.chiara-aboutBanner-title {
+    margin: spacing("single") 0;
+    font-family: stencilFontFamily("body-font");
+    font-weight: fontWeight("medium");
+    font-size: fontSize("base") * 20/14;
+
+    @include breakpoint("medium") {
+        position: absolute;
+        left: 50%;
+        right: 15%;
+        top: 30px;
+    }
+
+    @include breakpoint("large") {
+        top: 35px;
+        font-size: fontSize("base") * 25/14;
+    }
+
+    @include breakpoint("xlarge") {
+        top: 45px;
+        font-size: fontSize("base") * 30/14;
+    }
+}
+
+.chiara-aboutBanner-text {
+    position: relative;
+    padding-bottom: spacing("double");
+
+    &:after {
+        content: ' ';
+        position: absolute;
+        height: 0;
+        left: 0;
+        width: 50px;
+        bottom: 0;
+        border-bottom: 5px solid stencilColor("color-greyDark");
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+
+    @include breakpoint("medium") {
+        position: absolute;
+        left: 70%;
+        right: 12%;
+        top: 270px;
+    }
+
+    @include breakpoint("large") {
+        left: 68%;
+        top: 330px;
+    }
+
+    @include breakpoint("xlarge") {
+        left: 75%;
+        right: 5%;
+        top: 400px;
+        font-size: fontSize("base") * 16/14;
+    }
+}

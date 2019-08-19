@@ -1,0 +1,646 @@
+@if stencilString("carousel-transition") == 'rotate' {
+    @keyframes herocarousel-description {
+        from {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+    
+    @keyframes herocarousel-title {
+        from {
+            opacity: 0;
+            transform: scale(.8);
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+    
+    @keyframes herocarousel-image {
+        from {
+            opacity: .6;
+            transform: rotateZ(-15deg) scale(1.3);
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+    
+    @keyframes herocarousel-button {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+}
+
+@else if stencilString("carousel-transition") == 'zoom' {
+    @keyframes herocarousel-description {
+        from {
+            opacity: 0;
+            transform: none;
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+    
+    @keyframes herocarousel-title {
+        from {
+            opacity: 0;
+            transform: scale(.8);
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+    
+    @keyframes herocarousel-image {
+        from {
+            opacity: .6;
+            transform: scale(1.3);
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+    
+    @keyframes herocarousel-button {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+}
+
+@else {
+    @keyframes herocarousel-description {
+        from {
+            opacity: 0;
+            transform: none;
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+    
+    @keyframes herocarousel-title {
+        from {
+            opacity: 0;
+            transform: none;
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+    
+    @keyframes herocarousel-image {
+        from {
+            opacity: .6;
+            transform: none;
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+    
+    @keyframes herocarousel-button {
+        from {
+            opacity: 0;
+            transform: none;
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+}
+
+
+
+.heroCarousel {
+    @if #{stencilString("carousel-width")} == 'boxed' {
+        @extend %chiara-container;
+    }
+
+    margin-top: 0;
+
+    .js & {
+        max-height: none;
+        opacity: 1;
+
+        > a + a {
+            display: none;
+        }
+    }
+
+    @include breakpoint("medium") {
+        margin-top: -(spacing("half"));
+    }
+    
+    a {
+        text-decoration: none;
+    }
+
+    .slick-slide {
+        display: block;
+    }
+
+    &.slick-dotted.slick-slider {
+        @include breakpoint("medium") {
+            margin-bottom: spacing("double");
+        }
+    }
+
+    .slick-prev,
+    .slick-next {
+        width: auto;
+        height: auto;
+        padding: remCalc(10);
+        display: none !important;
+
+        @include breakpoint("medium") {
+            display: block !important;
+            bottom: spacing("single");
+            top: auto;
+            margin: 0;
+            transform: none;
+            background-color: transparent;
+            border: 0;
+        }
+
+        &:before {
+            width: auto;
+            height: auto;
+            background: none;
+            font-family: $fa-font-name;
+            font-size: remCalc(20);
+            display: inline-block;
+            font-weight: 900;
+            text-shadow: 0 0 5px stencilColor("carousel-arrow-bgColor");
+        }
+    }
+
+    .slick-prev {
+        left: 0;
+
+        @include breakpoint("medium") {
+            left: auto;
+            right: 50%;
+            margin-right: spacing("single");
+        }
+
+        &:before {
+            content: "\f060";
+        }
+    }
+
+    .slick-next {
+        right: 0;
+
+        @include breakpoint("medium") {
+            left: 50%;
+            right: auto;
+            margin-left: spacing("single");
+        }
+        
+        &:before {
+            content: "\f061";
+        }
+    }
+
+    .slick-dots li button {
+        width: remCalc(8);
+        height: remCalc(8);
+
+        &:before {
+            width: remCalc(8);
+            height: remCalc(8);
+            background-color: stencilColor("carousel-dot-color");
+            opacity: 1;
+        }
+    }
+
+    .slick-dots {
+        @media (max-width: screenSize("medium") - 1px) {
+            bottom: 0;
+        }
+
+        @include breakpoint("medium") {
+            max-width: layout("max");
+            padding: 0 $container-padding;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: left;
+        }
+
+        .slick-active button {
+            width: remCalc(12);
+            height: remCalc(12);
+            border-color: stencilColor("carousel-dot-color-active");
+
+            &:before {
+                width: remCalc(12);
+                height: remCalc(12);
+                background-color: stencilColor("carousel-dot-color-active");
+            }
+        }
+    }
+}
+
+
+// Same height config
+// ----------------------------------------------------------------------------
+
+@if (stencilString("carousel-height") == 'equal') {
+
+
+    .heroCarousel-image-wrapper[data-uniform] {
+        @media (max-width: screenSize("medium") - 1px) {
+            padding-top: 0 !important;
+        }
+
+        @include breakpoint("medium") {
+            height: 0;
+            overflow: hidden;
+            position: relative;
+    
+            .heroCarousel-image {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 100%;
+            }
+        }
+    }
+}
+
+
+// Alternative style on Mobile
+// ----------------------------------------------------------------------------
+
+.heroCarousel--mobile {
+    @media (max-width: screenSize("medium") - 1px) {
+        .heroCarousel-image {
+            height: $carousel-mobile-height;
+            object-fit: cover;
+        }
+
+        .heroCarousel-content {
+            left: 0;
+            margin: 0 auto;
+            padding: spacing("half");
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            
+        }
+
+        .heroCarousel-content--empty {
+            background-color: transparent;
+        }
+
+        .heroCarousel-title,
+        .heroCarousel-description {
+            text-shadow: -1px 0 0 stencilColor("carousel-bgColor"), 
+                        -1px -1px 0 stencilColor("carousel-bgColor"),
+                        -1px 1px 0 stencilColor("carousel-bgColor"),
+                        1px 0 0 stencilColor("carousel-bgColor"),
+                        1px -1px 0 stencilColor("carousel-bgColor"),
+                        1px 1px 0 stencilColor("carousel-bgColor"),
+                        0 -1px 0 stencilColor("carousel-bgColor"),
+                        0 1px 0 stencilColor("carousel-bgColor");
+        }
+    }
+}
+
+// Other elements
+// ============================================================================
+
+.heroCarousel-image-wrapper {
+    @include breakpoint("medium") {
+        .heroCarousel-slide & {
+            max-height: none;
+        }
+    }
+}
+
+.heroCarousel-image {
+    &[data-lazy] {
+        width: auto;
+        height: auto;
+    }
+
+    @include breakpoint("medium") {
+        @if stencilString("carousel-width") == 'auto' {
+            .heroCarousel-slide & {
+                width: auto;
+                margin: auto;
+            }
+        }
+
+        .heroCarousel-slide & {
+            max-height: none;
+        }
+
+        .slick-active & {
+            animation: herocarousel-image .5s ease .2s forwards;
+
+            @include ie-only() {
+                animation: none;
+            }
+        }
+    }
+}
+
+.heroCarousel-content {
+    display: flex;
+    flex-direction: column;
+    padding: spacing("single") spacing("half") spacing("double") + spacing("half");
+    align-items: center;
+
+    @include breakpoint("medium") {
+        width: 30rem;
+        background-color: rgba($carousel-bgColor, to-number(stencilString("carousel-bgOpacity")));
+
+        &.heroCarousel-content--empty {
+            background-color: transparent;
+        }
+    }
+
+    @include breakpoint("large") {
+        width: 45rem;
+    }
+}
+
+.heroCarousel-title {
+    font-size: $carousel-heading-fontSize * .5;
+    font-family: stencilFontFamily("body-font");
+    font-weight: stencilFontWeight("headings-font");
+    order: 2;
+    line-height: 1;
+    margin-bottom: spacing("single");
+    width: 100%;
+
+    @include breakpoint("medium") {
+        font-size: $carousel-heading-fontSize * .75;
+        margin-bottom: spacing("double");
+        opacity: 0;
+
+        .slick-active & {
+            animation: herocarousel-title .5s ease .7s forwards;
+
+            @include ie-only() {
+                animation: none;
+                opacity: 1;
+            }
+        }
+    }
+
+    @include breakpoint("large") {
+        font-size: $carousel-heading-fontSize;
+    }
+}
+
+.heroCarousel-description {
+    font-size: $carousel-description-fontSize * .75;
+    order: 1;
+    margin-bottom: spacing("half");
+    width: 100%;
+
+    @include breakpoint("medium") {
+        margin-bottom: spacing("single");
+        font-size: $carousel-description-fontSize;
+        opacity: 0;
+
+        .slick-active & {
+            animation: herocarousel-description .5s ease .5s forwards;
+
+            @include ie-only() {
+                animation: none;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.heroCarousel-action {
+    font-size: $carousel-button-fontSize * .75;
+    line-height: lineHeight("base");
+    order: 3;
+
+    @include breakpoint("medium") {
+        font-size: $carousel-button-fontSize;
+        opacity: 0;
+        margin-top: 0;
+
+        .slick-active & {
+            animation: herocarousel-button .5s ease .8s forwards;
+
+            @include ie-only() {
+                animation: none;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+
+// Slide Position
+// ----------------------------------------------------------------------------
+
+%heroCarousel-slide--position-left {
+    .heroCarousel--mobile & {
+        .heroCarousel-content {
+            text-align: left;
+            align-items: flex-start;
+        }
+
+        .heroCarousel-image {
+            object-position: right center;
+        }
+    }
+
+    @include breakpoint("medium") {
+        .heroCarousel-content {
+            margin-right: 50%;
+            align-items: flex-start;
+            padding: spacing("double");
+        }
+
+        .heroCarousel-description,
+        .heroCarousel-title {
+            text-align: left;
+        }
+    }
+}
+
+
+%heroCarousel-slide--position-right {
+    .heroCarousel--mobile & {
+        .heroCarousel-content {
+            text-align: right;
+            align-items: flex-end;
+        }
+
+        .heroCarousel-image {
+            object-position: left center;
+        }
+    }
+
+    @include breakpoint("medium") {
+        .heroCarousel-content {
+            margin-left: 50%;
+            align-items: flex-end;
+            padding: spacing("double");
+        }
+
+        .heroCarousel-description,
+        .heroCarousel-title {
+            text-align: right;
+        }
+    }
+}
+
+
+// Slide Style
+// ----------------------------------------------------------------------------
+
+%heroCarousel-slide--style-default {
+    .heroCarousel-content {
+        background-color: rgba(stencilColor("carousel-bgColor"), to-number(stencilString("carousel-bgOpacity")));
+    }
+
+    .heroCarousel-title {
+        color: stencilColor("carousel-title-color");
+    }
+
+    .heroCarousel-description {
+        color: stencilColor("carousel-description-color");
+    }
+
+    .heroCarousel-action {
+        @if (stencilString("carousel-button-style") == 'primary') {
+            @include buttonVariant("primary");
+        }
+    }
+}
+
+
+%heroCarousel-slide--style-alt {
+    .heroCarousel-content {
+        background-color: rgba(stencilColor("carousel-bgColor-alt"), to-number(stencilString("carousel-bgOpacity-alt")));
+    }
+
+    .heroCarousel-title {
+        color: stencilColor("carousel-title-color-alt");
+    }
+
+    .heroCarousel-description {
+        color: stencilColor("carousel-description-color-alt");
+    }
+
+    .heroCarousel-action {
+        @if (stencilString("carousel-button-style-alt") == 'primary') {
+            @include buttonVariant("primary");
+        }
+    }
+}
+
+
+// Slides
+// ----------------------------------------------------------------------------
+
+.heroCarousel-slide--1 {
+    @if stencilString("carousel-slide1-position") == 'left' {
+        @extend %heroCarousel-slide--position-left;
+    } @else if stencilString("carousel-slide1-position") == 'right' {
+        @extend %heroCarousel-slide--position-right;
+    }
+
+    @if stencilString("carousel-slide1-style") == 'alt' {
+        @extend %heroCarousel-slide--style-alt;
+    } @else {
+        @extend %heroCarousel-slide--style-default;
+    }
+}
+
+.heroCarousel-slide--2 {
+    @if stencilString("carousel-slide2-position") == 'left' {
+        @extend %heroCarousel-slide--position-left;
+    } @else if stencilString("carousel-slide2-position") == 'right' {
+        @extend %heroCarousel-slide--position-right;
+    }
+
+    @if stencilString("carousel-slide2-style") == 'alt' {
+        @extend %heroCarousel-slide--style-alt;
+    } @else {
+        @extend %heroCarousel-slide--style-default;
+    }
+}
+
+.heroCarousel-slide--3 {
+    @if stencilString("carousel-slide3-position") == 'left' {
+        @extend %heroCarousel-slide--position-left;
+    } @else if stencilString("carousel-slide3-position") == 'right' {
+        @extend %heroCarousel-slide--position-right;
+    }
+
+    @if stencilString("carousel-slide3-style") == 'alt' {
+        @extend %heroCarousel-slide--style-alt;
+    } @else {
+        @extend %heroCarousel-slide--style-default;
+    }
+}
+
+.heroCarousel-slide--4 {
+    @if stencilString("carousel-slide4-position") == 'left' {
+        @extend %heroCarousel-slide--position-left;
+    } @else if stencilString("carousel-slide4-position") == 'right' {
+        @extend %heroCarousel-slide--position-right;
+    }
+
+    @if stencilString("carousel-slide4-style") == 'alt' {
+        @extend %heroCarousel-slide--style-alt;
+    } @else {
+        @extend %heroCarousel-slide--style-default;
+    }
+}
+
+.heroCarousel-slide--5 {
+    @if stencilString("carousel-slide5-position") == 'left' {
+        @extend %heroCarousel-slide--position-left;
+    } @else if stencilString("carousel-slide5-position") == 'right' {
+        @extend %heroCarousel-slide--position-right;
+    }
+
+    @if stencilString("carousel-slide5-style") == 'alt' {
+        @extend %heroCarousel-slide--style-alt;
+    } @else {
+        @extend %heroCarousel-slide--style-default;
+    }
+}

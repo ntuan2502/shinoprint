@@ -1,0 +1,67 @@
+.chiara-section--lookbookBanner {
+    width: 100vw;
+    margin-left: -$container-padding;
+
+    @include breakpoint("medium") {
+        width: calc(100vw - 20px);
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+.chiara-lookbookBanner {
+    @include breakpoint("medium") {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.chiara-lookbookBanner-img {
+    @include breakpoint("medium") {
+        flex: 1;
+    }
+
+    a {
+        display: inline-block;
+    }
+}
+
+.chiara-lookbookBanner-content {
+    margin-top: spacing("single");
+    text-align: center;
+    padding: 0 spacing("single");
+    color: stencilColor("color-textSecondary");
+
+    @include breakpoint("medium") {
+        flex: 1;
+        margin-top: 0;
+        padding: 0 spacing("double");
+        font-size: fontSize("base") * 18/14;
+        letter-spacing: .25em;
+    }
+
+    p {
+        @include breakpoint("medium") {
+            margin-bottom: spacing("double");
+        }
+    }
+
+    .button {
+        letter-spacing: 0;
+    }
+}
+
+.chiara-lookbookBanner-title {
+    margin: 0 0 spacing("single");
+    font-family: stencilFontFamily("body-font");
+    font-weight: fontWeight("medium");
+    font-size: fontSize("base") * 30/14;
+    line-height: 1.25;
+    color: stencilColor("color-textHeading");
+    text-transform: none;
+
+    @include breakpoint("medium") {
+        margin-bottom: spacing("double");
+        font-size: fontSize("base") * 50/14;
+    }
+}

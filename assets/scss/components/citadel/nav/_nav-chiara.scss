@@ -1,0 +1,149 @@
+.navList {
+    .navList {
+        padding-left: spacing("base");
+        height: 0;
+        transition: all .2s;
+        overflow: hidden;
+        opacity: 0;
+
+        &.is-open {
+            height: auto;
+            opacity: 1;
+        }
+    }
+}
+.navList-item {
+    &.has-subMenu {
+        position: relative;
+    }
+
+}
+
+.navList-action {
+    font-size: fontSize("base") * 13/14;
+    font-weight: fontWeight("medium");
+    color: $color-textBase;
+    padding-top: spacing("quarter");
+    padding-bottom: spacing("quarter");
+
+    &:hover,
+    &:focus {
+        color: $color-textLink;
+    }
+
+    &.is-selected {
+        font-weight: fontWeight("bold");
+    }
+
+    .has-subMenu {
+        padding-right: $icon-size;
+    }
+}
+
+.navList-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0;
+    padding: spacing("quarter") 0;
+
+    svg {
+        transition: all .2s;
+    }
+
+    .icon {
+        width: fontSize("base") * lineHeight("base") * 13/14;
+        height: fontSize("base") * lineHeight("base") * 13/14;
+        padding: spacing("eighth");
+        background-color: container("fill", "dark");
+    
+        svg {
+            fill: $color-textBase;
+        }
+    }
+
+    &:hover {
+        svg {
+            fill: $color-textLink;
+        }
+    }
+
+    &.is-open {
+        svg {
+            transform: rotate(45deg);
+        }
+    }
+}
+
+.navList--mobileSelectList {
+    @media (max-width: screenSize("medium") - 1px) {
+        .navList-action {
+            font-size: fontSize("smaller");
+            color: $color-textBase;
+
+            &.is-active {
+                font-weight: fontWeight("medium");
+                color: $color-textLink;
+                position: relative;
+
+                &:after {
+                    font-family: $fa-font-name;
+                    font-weight: bold;
+                    content: '\f00c';
+                    position: absolute;
+                    right: 0;
+                }
+            }
+        }
+    }
+}
+
+// Page Subnavigation
+// -----------------------------------------------------------------------------
+
+.navBar--sub {
+    .navBar-action {
+        color: $color-textLink;
+
+        &:hover,
+        &:focus {
+            color: $color-textLink-hover;
+        }
+    }
+
+    @media (max-width: screenSize("medium") - 1px) {
+        margin-bottom: spacing("single");
+
+        .navBar-section {
+            border: container("border");
+            border-radius: $global-radius;
+        }
+        .navBar-item {
+            margin: 0;
+            text-align: initial;
+            padding: spacing("half") spacing("base");
+
+            &.is-active {
+                font-weight: fontWeight("bold");
+            }
+            
+            + .navBar-item {
+                border-top: container("border");
+            }
+        }
+
+        .navBar-action {
+            position: relative;
+
+            &:after {
+                content: '\f054';
+                font-family: $fa-font-name;
+                font-weight: bold;
+                color: stencilColor("color-textSecondary");
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+        }
+    }
+}

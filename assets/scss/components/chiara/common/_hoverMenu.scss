@@ -1,0 +1,97 @@
+// ============================================================================
+// Make the main menu open when hover
+// 
+// 1. Import this file to allow the main menu open submenus when mouse hover
+// 
+// 2. Add data-collapsible-... to the main menu links in file navigation-list.html
+// 
+// <a class="navPages-action has-subMenu" href="{{url}}" 
+//     data-collapsible="navPages-{{id}}"
+//     data-collapsible-disabled-breakpoint="medium"
+//     data-collapsible-disabled-state="open"
+//     data-collapsible-enabled-state="closed">
+//     
+// ============================================================================
+
+.navigation-hover {
+    @include breakpoint("large") {
+        .navPages-action.is-open {
+            background-color: transparent;
+
+            svg {
+                fill: stencilColor("navPages-color");
+                stroke: stencilColor("navPages-color");
+            }
+        }
+
+        .navPage-subMenu.is-open {
+            display: none;
+        }
+
+        .navPages-item:hover,
+        .navPages-item:focus {
+            .navPages-action.is-open {
+                background-color: stencilColor("navPages-subMenu-backgroundColor");
+            }
+
+            > .navPages-action.is-open {
+                color: stencilColor("navPages-color-hover");
+
+                svg {
+                    fill: stencilColor("navPages-color-hover");
+                    stroke: stencilColor("navPages-color-hover");
+                }
+            }
+
+            .navPage-subMenu.is-open {
+                display: block;
+            }
+
+            .navPage-subMenu--mega2.is-open,
+            .navPage-subMenu--mega3.is-open,
+            .navPage-subMenu--mega4.is-open {
+                display: flex;
+            }
+
+            .navPage-subMenu-item-child {
+                > .navPage-subMenu.is-open {
+                    display: none;
+                }
+    
+                &:hover,
+                &:focus {
+                    > .navPage-subMenu.is-open {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .navPage-subMenu-item:first-child {
+            display: none;
+        }
+
+        .navPage-subMenu-item-child,
+        .navPage-subMenu-item-parent {
+            .navPage-subMenu-action.is-open {
+                font-size: $navPages-subMenu-fontSize;
+                font-weight: initial;
+                color: stencilColor("navPages-color");
+            }
+
+            &:hover,
+            &:focus {
+                .navPage-subMenu-action.is-open {
+                    font-weight: stencilFontWeight("headings-font");
+                    color: stencilColor("navPages-color-hover");
+                    background: $navPage-subMenu-item--is-highlighted-background;
+
+                    svg {
+                        fill: stencilColor("navPages-color-hover");
+                        stroke: stencilColor("navPages-color-hover");
+                    }
+                }
+            }
+        }
+    }
+}

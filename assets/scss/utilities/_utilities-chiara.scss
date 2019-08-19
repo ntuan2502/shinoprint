@@ -1,0 +1,362 @@
+.u-hiddenVisually-desktop {
+    @include breakpoint("medium") {
+        @include u-hidden("visually", !important);
+    }
+}
+
+.u-hiddenVisually-tablet {
+    @media (min-width: screenSize("small")) and (max-width: screenSize("medium") - 1px) {
+        @include u-hidden("visually", !important);
+    }
+}
+
+.u-hiddenVisually-mobile {
+    @media (max-width: screenSize("small") - 1px) {
+        @include u-hidden("visually", !important);
+    }
+}
+
+@mixin container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: none;
+    padding: 0 container("padding") / 2;
+    position: relative;
+    width: layout("fixed");                                                                                             
+
+    @include breakpoint("medium") {
+        padding: 0 $container-padding;
+    }
+
+    @include breakpoint("large") {
+    	max-width: remCalc(1170) + ($container-padding * 2);
+        padding: 0 $container-padding;
+    }
+
+    @include breakpoint("xxlarge") {
+    	max-width: layout("max") + ($container-padding * 4);
+        padding: 0 $container-padding * 2;
+    }
+}
+
+/**
+ * Call from a <body>'s class to display page heading on mobile
+ * - Category page
+ * - Brand page
+ */
+ @mixin body-page-heading-mobile() {
+    @media (max-width: screenSize("medium") - 1px) {
+        .header-main-container {
+            height: $header-height;
+        }
+    
+        .header-logo {
+            display: none;
+        }
+    
+        .page-heading-logo,
+        h1.page-heading {
+            position: fixed;
+            margin: 0;
+            padding: 0;
+            width: calc(100% - #{$header-height * 2});
+            height: $header-height;
+            left: $header-height;
+            right: $header-height;
+            top: 0;
+            overflow: hidden;
+            vertical-align: middle;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: fontSize("small");
+            color: stencilColor("navPages-color");
+            z-index: zIndex("low");
+
+            @at-root .has-activeNavPages {
+                .page-heading-logo,
+                h1.page-heading {
+                    z-index: zIndex("low") - 5; // lower header
+                }
+            }
+
+            > span {
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    }
+}
+
+%body-page-heading-mobile,
+.body-page-heading-mobile {
+    @include body-page-heading-mobile;
+}
+
+
+// Mobile Panel
+// ----------------------------------------------------------------------------
+
+%mobile-panel-heading {
+    margin: 0;
+    width: 100%;
+    height: $header-height;
+    overflow: hidden;
+    padding: 0 $header-height;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-bottom: container("border");
+    font-size: fontSize("small");
+    text-transform: uppercase;
+    background-color: $header-bg;
+    color: stencilColor("navPages-color");
+
+    @include breakpoint("medium") {
+        display: none;
+    }
+}
+
+.mobile-panel-heading {
+    @extend %mobile-panel-heading;
+}
+
+%mobile-panel-heading-ellipse {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mobile-panel-heading-ellipse {
+    @extend %mobile-panel-heading-ellipse;
+}
+
+
+.mobile-panel-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: remCalc(40);
+    height: remCalc(40);
+    z-index: zIndex("high") + 1;
+    padding: spacing("quarter");
+
+    %mobile-panel-heading ~ & {
+        top: $header-height / 2;
+        transform: translateY(-50%);
+    }
+
+    @include breakpoint("medium") {
+        display: none;
+    }
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@mixin mobile-panel() {
+    background-color: container("fill");
+    position: fixed;
+    top: 0;
+    bottom: $header-height;
+    left: auto;
+    right: -100%;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    box-shadow: 0 0 30px rgba(0,0,0,0.1);
+    opacity: 0;
+    transition: all .2s ease-in-out;
+    z-index: zIndex("low") + 5; // higher than header
+
+    &.u-hiddenVisually {
+        position: fixed !important;
+    }
+
+    &.is-open {
+        right: 0;
+        opacity: 1;
+    }
+}
+
+%mobile-panel {
+    @include mobile-panel;
+}
+
+@mixin mobile-panel-body() {
+    position: absolute;
+    top: $header-height;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: auto;
+    overflow: auto;
+    padding: spacing("single");
+    -webkit-overflow-scrolling: touch;
+}
+
+%mobile-panel-body {
+    @include mobile-panel-body;
+}
+
+// Mobile panel toggle floating button
+// ----------------------------------------------------------------------------
+%mobile-toggle-floating-button {
+    display: none;
+
+    @media (max-width: screenSize("medium") - 1px) {
+        @include button-base;
+        
+        position: fixed;
+        bottom: $header-height + 40px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        border: 0;
+        border-radius: 30px;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        line-height: 60px;
+        text-decoration: none;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        z-index: zIndex("lower");
+
+        background-color: $buttonStyle-default-backgroundColor;
+        border-color: $buttonStyle-default-borderColor;
+
+        &:hover {
+            background-color: $buttonStyle-default-backgroundColorHover;
+            border-color: $buttonStyle-default-borderColorHover;
+        }
+
+        &.is-open {
+            .icon.on {
+                visibility: hidden;
+            }
+
+            .icon.off {
+                visibility: visible;
+            }
+        }
+
+        .icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            padding: 15px 0;
+            transition: none;
+            font-style: normal;
+            font-weight: fontWeight("bold");
+            font-size: fontSize("smallest");
+            text-transform: uppercase;
+            color: $buttonStyle-default-color;
+            line-height: 30px;
+
+            &.off {
+                visibility: hidden;
+            }
+        }
+
+        .icon svg {
+            fill: $buttonStyle-default-color;
+        }
+
+        &:hover .icon {
+            color: $buttonStyle-default-colorHover;
+            svg {
+                fill: $buttonStyle-default-colorHover;
+            }
+        }
+
+        &:focus .icon {
+            color: $buttonStyle-default-colorActive;
+            svg {
+                fill: $buttonStyle-default-colorActive;
+            }
+        }
+    }
+}
+
+.mobile-toggle-floating-button {
+    @extend %mobile-toggle-floating-button;
+}
+
+%mobile-toggle-floating-button-primary {
+    @extend %mobile-toggle-floating-button;
+
+    background-color: $buttonStyle-primary-backgroundColor;
+    border-color: $buttonStyle-primary-borderColor;
+
+    &:hover {
+        background-color: $buttonStyle-primary-backgroundColorHover;
+        border-color: $buttonStyle-primary-borderColorHover;
+    }
+
+    .icon {
+        color: $buttonStyle-primary-color;
+    }
+
+    .icon svg {
+        fill: $buttonStyle-primary-color;
+    }
+
+    &:hover .icon {
+        color: $buttonStyle-primary-colorHover;
+        svg {
+            fill: $buttonStyle-primary-colorHover;
+        }
+    }
+
+    &:focus .icon {
+        color: $buttonStyle-primary-colorActive;
+        svg {
+            fill: $buttonStyle-primary-colorActive;
+        }
+    }
+}
+
+.mobile-toggle-floating-button-primary {
+    @extend %mobile-toggle-floating-button-primary;
+}
+
+
+
+
+// ============================================================================
+
+@keyframes shadow-pulse {
+  0% {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+  100% {
+    box-shadow: 0 0 5px 25px rgba(0,0,0,0);
+  }
+}
+
+.u-shadowPulse,
+%u-shadowPulse {
+    animation: shadow-pulse 1s infinite;
+
+    &:hover {
+        animation: none;
+    }
+}
+
+@mixin ie-only() {
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+        @content;
+     }
+}

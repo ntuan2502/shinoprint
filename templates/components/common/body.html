@@ -1,0 +1,10 @@
+<div class="body" data-currency-code="{{currency_selector.active_currency_code}}">
+    {{#block "hero"}} {{/block}}
+    {{# block "page-before"}} {{/block}}
+    <div class="container">
+        {{#block "page"}} {{/block}}
+    </div>
+    {{# block "page-after"}} {{/block}}
+    {{> components/common/modal}}
+    {{> components/common/alert-modal}}
+</div>

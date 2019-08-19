@@ -1,0 +1,19 @@
+.alertBox--info {
+    color: $color-info;
+    background-color: container("fill");
+    font-weight: fontWeight("bold");
+    width: auto;
+    margin: 0 auto spacing("half");
+    display: table;
+    box-shadow: 0 5px 15px rgba($color-black, 0.15);
+
+    @include breakpoint("medium") {
+        font-size: fontSize("smaller");
+        margin-bottom: spacing("single");
+        padding: spacing("base") spacing("single");
+    }
+
+    .alertBox-message {
+        width: auto;
+    }
+}

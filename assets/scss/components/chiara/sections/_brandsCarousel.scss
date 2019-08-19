@@ -1,0 +1,73 @@
+.chiara-brandsCarousel-slider {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0 (-$container-padding / 2);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+
+    -ms-overflow-style: none;  // IE 10+
+    overflow: -moz-scrollbars-none;  // Firefox
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    @include breakpoint("medium") {
+        margin: 0;
+        overflow: hidden;
+        justify-content: center;
+    }
+
+    &.slick-slider {
+        overflow: visible;
+    }
+
+    .slick-prev,
+    .slick-next {
+        display: none;
+        margin-top: 0;
+        top: 50%;
+        opacity: 0;
+        transition: all .2s ease-in;
+
+        @include breakpoint("medium") {
+            display: block;
+        }
+    }
+
+    .slick-prev {
+        left: 0;
+
+        @include breakpoint("xlarge") {
+            left: -50px;
+        }
+    }
+
+    .slick-next {
+        right: 0;
+
+        @include breakpoint("xlarge") {
+            right: -50px;
+        }
+    }
+
+    &:hover,
+    &:focus {
+        .slick-prev,
+        .slick-next {
+            opacity: 1;
+        }
+    }
+}
+
+.chiara-brandsCarousel-item {
+    margin: 0 spacing("half");
+
+    a {
+        display: block;
+    }
+    
+    img {
+        max-width: none;
+    }
+}

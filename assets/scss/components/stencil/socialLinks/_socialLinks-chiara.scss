@@ -1,0 +1,89 @@
+// Fix Facebook like button
+.socialLinks-item--facebook_like .icon {
+    width: auto;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+// Colored Social Icons
+// ============================================================================
+
+.socialLinks--colors {
+    .socialLinks-item {
+        margin: 0 spacing("quarter") spacing(quarter) 0;
+    }
+
+    .icon {
+        width: 40px; // don't use remCalc because it converts to float number
+        height: 40px;
+        padding: 10px;
+        border-radius: 20px;
+    
+        svg {
+            fill: #fff;
+        }
+    
+        &:hover {
+            opacity: .8;
+    
+            svg {
+                fill: #fff;
+            }
+        }
+    }
+
+    .icon--google_plusone {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    .icon--facebook {
+        background-color: #4c61ac;
+    }
+    
+    .icon--twitter {
+        background-color: #00bae3;
+    }
+    
+    .icon--pinterest {
+        background-color: #d91a18;
+        width: 40px !important;
+    }
+    
+    .icon--instagram {
+        background-color: #0085d7;
+    }
+    
+    .icon--youtube {
+        background-color: #e20000;
+    }
+    
+    .icon--email {
+        background-color: #aaaaaa;
+    }
+    
+    .icon--print {
+        background-color: #aaaaaa;
+    }
+
+    .icon--google {
+		background-color: #da473d;
+    }
+    
+    .icon--linkedin {
+        background-color: #117cb3;
+    }
+
+    .icon--tumbler {
+        background-color: #324357;
+    }
+
+    .icon--stumbleupon {
+        background-color: #8acf5c;
+    }
+    
+    .icon--rss {
+        background-color: #e8762a;
+    }
+}
+

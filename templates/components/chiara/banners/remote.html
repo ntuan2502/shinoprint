@@ -1,0 +1,7 @@
+<div>
+    {{#each banners.top_metadata}}
+        {{#if (occurrences this.content 'data-remote-banner-position')}}
+            {{{this.content}}}
+        {{/if}}
+    {{/each}}
+</div>

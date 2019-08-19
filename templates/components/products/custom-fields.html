@@ -1,0 +1,16 @@
+{{#if product.custom_fields_count '>' 0}}
+    {{#if theme_settings.productpage_custom_fields_hide_special}}
+        {{#each product.custom_fields}}
+            {{#startsWith '__' name}}
+            {{else}}
+                <dt class="productView-info-name productView-info-name--cf{{pascalcase name}}">{{name}}:</dt>
+                <dd class="productView-info-value productView-info-value--cf{{pascalcase name}}">{{{value}}}</dd>
+            {{/startsWith}}
+        {{/each}}
+    {{else}}
+        {{#each product.custom_fields}}
+            <dt class="productView-info-name productView-info-name--cf{{pascalcase name}}">{{name}}:</dt>
+            <dd class="productView-info-value productView-info-value--cf{{pascalcase name}}">{{{value}}}</dd>
+        {{/each}}
+    {{/if}}
+{{/if}}

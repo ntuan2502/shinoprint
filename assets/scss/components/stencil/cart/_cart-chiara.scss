@@ -1,0 +1,26 @@
+.previewCartItem-image img {
+    left: spacing("quarter");
+    right: spacing("quarter");
+    top: spacing("quarter");
+    bottom: spacing("quarter");
+    max-width: calc(100% - #{spacing("half")});
+    max-height: calc(100% - #{spacing("half")});
+}
+
+.cart-additionalCheckoutButtons {
+    iframe {
+        z-index: zIndex("lowest") !important;
+    }
+}
+
+.previewCartItem-brand,
+.previewCartItem-price,
+.previewCartItem-sku {
+    display: block;
+}
+
+.previewCartItem-sku {
+    color: $small-font-color;
+    display: inline-block;
+    font-size: fontSize("smallest");
+}

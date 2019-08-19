@@ -1,0 +1,129 @@
+.bottomBar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: $header-height;
+    background-color: stencilColor("bottomBar-bgColor");
+    z-index: zIndex("high");
+    box-shadow: 0 0 15px rgba($color-black, .1);
+
+    @include breakpoint("medium") {
+        display: none;
+    }
+}
+
+.bottomBar-list {
+    @include u-listReset;
+    display: flex;
+    align-items: center;
+    height: $header-height;
+}
+
+.bottomBar-item {
+    flex: 1;
+    text-align: center;
+    font-size: 0;
+}
+
+.bottomBar-item-icon {
+    display: inline-block;
+    font-size: 0;
+
+    svg {
+        width: remCalc($bottomBar-icon-size);
+        height: remCalc($bottomBar-icon-size);
+        fill: stencilColor("bottomBar-color");
+
+        .bottomBar-action.is-open & {
+            fill: stencilColor("bottomBar-color-active");
+        }
+    }
+}
+
+.bottomBar-item-label {
+    display: block;
+    font-size: $bottomBar-fontSize;
+    line-height: 1;
+    margin-top: spacing("quarter");
+}
+
+.bottomBar-action {
+    display: inline-block;
+    text-decoration: none;
+    color: stencilColor("bottomBar-color");
+
+    &.is-open {
+        color: stencilColor("bottomBar-color-active");
+    }
+}
+
+
+// Contact Panel
+// ----------------------------------------------------------------------------
+
+.bottomBar-contactPanel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: container("padding");
+    background: container("fill");
+    font-size: fontSize("base");
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transform: rotateX(90deg);
+    transition: all .2s ease-in-out;
+    opacity: 0;
+
+    &.is-open {
+        bottom: remCalc($header-height) + spacing("half");
+        transform: none;
+        opacity: 1;
+    }
+
+    &:after {
+        content: '';
+        display: block;
+        width: 15px;
+        height: 15px;
+        transform: rotate(45deg);
+        transform-origin: center;
+        position: absolute;
+        bottom: -7.5px;
+        right: calc(30% - 7.5px);
+        background-color: container("fill");
+    }
+
+    ul {
+        margin: 0;
+    }
+
+    li {
+        padding: 0 spacing("double");
+    }
+
+    .button {
+        margin-bottom: spacing("half");
+        width: 100%;
+        border-radius: spacing("single");
+    }
+}
+
+// Catalog Panel
+// ----------------------------------------------------------------------------
+
+.navCatalog-panel {
+    @extend %mobile-panel;
+
+    @include breakpoint("medium") {
+        display: none;
+    }
+}
+
+.navCatalog-panel-body {
+    @extend %mobile-panel-body;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}

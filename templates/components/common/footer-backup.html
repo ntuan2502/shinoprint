@@ -1,0 +1,113 @@
+{{#if banners.bottom}}
+<div class="banners" data-banner-location="bottom">
+    <div class="banner">
+        {{{limit banners.bottom 1}}}
+    </div>
+</div>
+{{/if}}
+
+{{#if settings.show_newsletter_box}}
+    {{#block "chiara-footer-newsletter"}}
+        <div class="chiara-footerNewsletter lazyload">
+            <div class="container" data-section-type="newsletterSubscription">
+                <h5 class="chiara-footerNewsletter-heading">{{{theme_settings.footerNewsletter_heading}}}</h5>
+                <form class="form" action="{{urls.subscribe.action}}" method="post">
+                    <fieldset class="form-fieldset">
+                        <input type="hidden" name="action" value="subscribe">
+                        <input type="hidden" name="nl_first_name" value="bc">
+                        <input type="hidden" name="check" value="1">
+                        <div class="form-field">
+                            <label class="form-label is-srOnly" for="nl_email">{{lang 'common.email_address'}}</label>
+                            <div class="form-prefixPostfix wrap">
+                                <input class="form-input" id="nl_email" name="nl_email" type="email" value="{{customer.email}}" placeholder="{{lang 'newsletter.email_placeholder'}}">
+                                <input class="button button--primary form-prefixPostfix-button--postfix" type="submit" value="{{lang 'newsletter.subscribe_submit'}}">
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    {{/block}}
+{{/if}}
+
+<footer class="footer" role="contentinfo">
+    <div class="container">
+        {{#block "chiara-footer-info"}}
+        <section class="footer-info">
+            <article class="footer-info-col" data-section-type="footer-webPages">
+                <p>{{> components/common/store-logo}}</p>
+                <p>Ut consequatur quibusdam error. Laboriosam quia neque dolores facere ut sunt voluptatem eius qui.</p>
+                <ul class="footer-info-col-contactList">
+                    {{#if settings.address}}
+                    <li><strong>A</strong> <address>{{settings.address}}</address></li>
+                    {{/if}}
+                    {{#if settings.phone_number}}
+                    <li><strong>T</strong> <a href="tel:{{settings.phone_number}}">{{settings.phone_number}}</a></li>
+                    {{/if}}
+                    <li><strong>E</strong> <a href="mailto:contact@example.com">contact@example.com</a></li>
+                </ul>
+                {{#if theme_settings.social_icon_placement_bottom '!==' 'bottom_none'}}
+                    {{> components/common/social-links}}
+                {{/if}}
+            </article>
+
+            <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
+                <h5 class="footer-info-heading">Opening Time</h5>
+                <ul class="footer-info-list">
+                    <li>Mon - Fri: 8AM - 19PM</li>
+                    <li>Sat: 8AM - 17PM</li>
+                    <li>Sun: Closed</li>
+                    <li>We Work All The Holidays</li>
+                </ul>
+            </article>
+
+            <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
+                <h5 class="footer-info-heading">About</h5>
+                <ul class="footer-info-list footer-info-list--links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Shopping Guide</a></li>
+                    <li><a href="#">Delivery Information</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Our Store</a></li>
+                </ul>
+            </article>
+
+            <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
+                <h5 class="footer-info-heading">Account</h5>
+                <ul class="footer-info-list footer-info-list--links">
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                </ul>
+            </article>
+        </section>
+        {{/block}}
+
+        {{#block "chiara-footer-icons"}}
+        <section class="footer-icons">
+            {{> components/common/payment-icons}}
+
+            {{#if theme_settings.geotrust_ssl_common_name}}
+                <div class="footer-geotrust-ssl-seal">
+                    {{> components/common/geotrust-ssl-seal}}
+                </div>
+            {{/if}}
+        </section>
+        {{/block}}
+        
+        {{#or theme_settings.show_powered_by theme_settings.show_copyright_footer}}
+        {{#block "chiara-footer-copyright"}}
+        <div class="footer-copyright">
+            {{#if theme_settings.show_copyright_footer}}
+                <p class="powered-by">&copy; {{moment format="YYYY"}} {{settings.store_name}} </p>
+            {{/if}}
+            {{#if theme_settings.show_powered_by}}
+                <p class="powered-by">Powered by <a href="https://www.bigcommerce.com?utm_source=merchant&amp;utm_medium=poweredbyBC" rel="nofollow">BigCommerce</a>. <a href="https://papathemes.com/bigcommerce-themes/?utm_source=merchant&amp;utm_medium=poweredbyBC" rel="nofollow">BigCommerce Theme</a> by <a href="https://papathemes.com?utm_source=merchant&amp;utm_medium=poweredbyBC" rel="nofollow">Papathemes</a></p>
+            {{/if}}
+        </div>
+        {{/block}}
+        {{/or}}
+    </div>
+</footer>

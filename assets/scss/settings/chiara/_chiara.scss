@@ -1,0 +1,23 @@
+$page-heading-fontSize: stencilNumber("page-heading-fontSize");
+
+$price-fontSize                : remCalc(stencilNumber("price-fontSize"));
+$price-fontSize-sm             : max($price-fontSize * .875, remCalc($fontSize-smallest));
+$price-main-fontSize           : remCalc(stencilNumber("price-main-fontSize"));
+$price-main-fontSize-sm        : max($price-main-fontSize * .6, remCalc($fontSize-smallest));
+$price-main-fontSize-md        : max($price-main-fontSize * .8, remCalc($fontSize-root));
+$productpage-title-fontSize    : remCalc(stencilNumber("productpage-title-fontSize"));
+$productpage-title-fontSize-sm : max($productpage-title-fontSize * .6, remCalc($fontSize-root));
+
+$navPages-fontSize: stencilNumber("navPages-fontSize");
+$navPages-subMenu-fontSize: stencilNumber("navPages-subMenu-fontSize");
+$navPages-childList-fontSize: stencilNumber("navPages-childList-fontSize");
+
+$navUser-icon-fontSize: stencilNumber("navUser-icon-fontSize");
+
+$bottomBar-icon-size: stencilNumber("bottomBar-icon-size");
+$bottomBar-fontSize: stencilNumber("bottomBar-fontSize");
+
+$carousel-mobile-height: stencilNumber("carousel-mobile-height");
+$carousel-heading-fontSize: stencilNumber("carousel-heading-fontSize");
+$carousel-description-fontSize: stencilNumber("carousel-description-fontSize");
+$carousel-button-fontSize: stencilNumber("carousel-button-fontSize");

@@ -1,0 +1,55 @@
+---
+brands:
+    limit: {{theme_settings.products_per_page}}
+---
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+<div class="page">
+    <main class="page-content
+        {{#if theme_settings.brandspage_infiniteScroll}}infiniteScroll{{/if}}"
+        {{#if theme_settings.brandspage_infiniteScroll}}data-brands-infinite-scroll{{/if}}>
+
+        <h1 class="page-heading">{{lang 'brand.label'}}</h1>
+        <form class="actionBar" data-display-type="brandGrid">
+            <fieldset class="form-fieldset actionBar-section">
+                <div class="form-field form-field--grid-list">
+                    <input type="radio" name="display-type" id="brands-display-type-grid" value="grid" checked>
+                    <label class="form-label" for="brands-display-type-grid">
+                        <span class="is-srOnly">{{lang 'common.grid'}}</span>
+                        <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-grid" /></svg></i>
+                    </label>
+                    <input type="radio" name="display-type" id="brands-display-type-list" value="list">
+                    <label class="form-label" for="brands-display-type-list">
+                        <span class="is-srOnly">{{lang 'common.list'}}</span>
+                        <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-list" /></svg></i>
+                    </label>
+                </div>
+            </fieldset>
+        </form>
+        <ul class="brandGrid" id="brandGrid">
+            {{#each brands}}
+                <li class="brand">
+                    <article class="card {{#if alternate}}card--alternate{{/if}} {{#unless image}}card--noimage{{/unless}}">
+                        <figure class="card-figure">
+                            <a href="{{url}}">
+                                <div class="card-img-container">
+                                    <img class="card-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'brand_size' (cdn ../theme_settings.default_image_brand)}}" alt="{{name}}" title="{{name}}">
+                                </div>
+                            </a>
+                        </figure>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="{{url}}">{{name}}</a>
+                            </h4>
+                        </div>
+                    </article>
+                </li>
+            {{/each}}
+        </ul>
+        {{> components/common/paginator pagination.brands}}
+    </main>
+</div>
+{{/partial}}
+{{> layout/base}}

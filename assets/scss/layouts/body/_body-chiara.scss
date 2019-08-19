@@ -1,0 +1,46 @@
+body {
+    // IE 10+: Fix margin-left: 50%
+    -ms-overflow-x: hidden;
+}
+
+// Edge: Fix margin-left: 50%
+@supports (-ms-ime-align:auto) {
+    body {
+        overflow-x: hidden;
+    }
+}
+
+.body {
+    margin-top: 0;
+
+    @media (max-width: screenSize("medium") - 1px) {
+        margin-bottom: spacing("double");
+    }
+
+    @include breakpoint("medium") {
+        margin-top: spacing("half");
+    }
+}
+
+.page-sidebar {
+    @include breakpoint("xxlarge") {
+        padding-right: $column-gutter / 2 * 6;
+    }
+}
+
+.page-sidebar + .page-content {
+    @include breakpoint("xxlarge") {
+    }
+}
+
+.page--no-breadcrumb {
+    @media (max-width: screenSize("medium") - 1px) {
+        margin-top: spacing("half");
+    }
+}
+.modal-body {
+    overflow: -webkit-paged-x;
+    -webkit-overflow-scrolling: touch;
+    padding: 2.4rem;
+    overflow-y: auto;
+}

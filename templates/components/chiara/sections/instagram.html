@@ -1,0 +1,36 @@
+{{#block "chiara-instagram"}}
+{{#if theme_settings.instagram_token}}
+{{#if theme_settings.instagram_count '>' 0}}
+<div class="chiara-section chiara-section--instagram">
+    <div class="chiara-instagram{{#if theme_settings.instagram_type}} chiara-instagram--{{theme_settings.instagram_type}}{{/if}}">
+        {{#if theme_settings.instagram_heading}}
+            <h2 class="page-heading">{{theme_settings.instagram_heading}}</h2>
+        {{/if}}
+        {{#if theme_settings.instagram_subheading}}
+            <p class="page-subheading">{{theme_settings.instagram_subheading}}</p>
+        {{/if}}
+        <div id="instafeed" class="chiara-instafeed chiara-instafeed--maxCol{{theme_settings.instagram_col}}"></div>
+        <script type="text/javascript">
+        // <![[
+            function chiaraInstafeedLoad() {
+                "use strict";
+                var feed = new Instafeed({
+                    get: 'user',
+                    userId: '{{first (split theme_settings.instagram_token ".")}}',
+                    accessToken: '{{theme_settings.instagram_token}}',
+                    resolution: 'standard_resolution',
+                    template: '<div class="chiara-instafeed-item"><a href="{'+'{link}}" target="_blank" id="{'+'{id}}"><img src="{'+'{image}}" /></a></div>',
+                    sortBy: 'most-recent',
+                    limit: {{theme_settings.instagram_count}},
+                    links: false
+                });
+                feed.run();
+            }
+        // ]]>
+        </script>
+        <script type="text/javascript" src="{{cdn '/assets/vendor/instafeed/instafeed.min.js'}}" async onload="chiaraInstafeedLoad()"></script>
+    </div>
+</div>
+{{/if}}
+{{/if}}
+{{/block}}

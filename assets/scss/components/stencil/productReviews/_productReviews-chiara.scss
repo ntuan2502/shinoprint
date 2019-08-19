@@ -1,0 +1,85 @@
+.productReviews-list {
+	margin: 0;
+
+	+ .pagination {
+		margin-top: spacing("single");
+	}
+}
+
+.productReview {
+	display: block;
+	padding: 0;
+	width: 100%;
+
+	+ .productReview {
+		margin-top: spacing("single");
+	}
+
+	article {
+		@include breakpoint("medium") {
+			font-size: 0;
+		}
+	}
+
+	header {
+		@include breakpoint("medium") {
+			display: inline-block;
+			width: width("3/12");
+			font-size: fontSize("base");
+			vertical-align: top;
+			padding-right: spacing("single")
+		}
+	}
+}
+
+.productReview-author {
+	float: left;
+	font-size: fontSize("smallest");
+	margin-bottom: spacing("half");
+	line-height: fontSize("base") * 1.25;
+
+	@include breakpoint("medium") {
+		float: right;
+	}
+}
+
+.productReview-rating {
+	float: right;
+	line-height: fontSize("base") * 1.25;
+
+	@include breakpoint("medium") {
+		clear: right;
+	}
+}
+
+
+.productReview-title {
+	clear: both;
+	font-size: fontSize("smallest");
+	margin-bottom: spacing("half");
+	line-height: 1.25;
+
+	@include breakpoint("medium") {
+		font-size: fontSize("base");
+	}
+}
+
+
+.productReview-body {
+	@include breakpoint("medium") {
+		display: inline-block;
+		width: width("9/12");
+		vertical-align: top;
+		padding-left: spacing("single");
+		border-left: container("border");
+	}
+}
+
+.productReview-content {
+	font-size: fontSize("smallest");
+	margin-bottom: 0;
+
+	@include breakpoint("medium") {
+		font-size: fontSize("base");
+	}
+}

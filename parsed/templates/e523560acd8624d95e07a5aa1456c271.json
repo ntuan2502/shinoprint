@@ -1,0 +1,1 @@
+{"components/chiara/banners/remote":"<div>\n    {{#each banners.top_metadata}}\n        {{#if (occurrences this.content 'data-remote-banner-position')}}\n            {{{this.content}}}\n        {{/if}}\n    {{/each}}\n</div>\n"}

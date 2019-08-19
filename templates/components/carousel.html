@@ -1,0 +1,48 @@
+<section class="heroCarousel {{#if theme_settings.carousel_mobile_height_fixed}} heroCarousel--mobile{{/if}}" 
+    data-slick='{
+        "dots": true,
+        "arrows": {{arrows}},
+        "adaptiveHeight": true,
+        "mobileFirst": true,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "autoplay": true,
+        "autoplaySpeed": {{carousel.swap_frequency}},
+        "lazyLoad": "anticipated"
+    }'>
+    {{#each carousel.slides}}
+    <a {{#if url}} href="{{url}}"{{/if}}>
+        <div class="heroCarousel-slide heroCarousel-slide--{{add @index 1}} {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}heroCarousel-slide--first{{/if}}">
+            <div class="heroCarousel-image-wrapper"
+                {{#if ../theme_settings.carousel-height '===' 'equal'}}
+                {{#and ../../carousel.slides.0.image_width ../../carousel.slides.0.image_height}}
+                    data-uniform
+                    style="padding-top: {{multiply (divide ../../../carousel.slides.0.image_height ../../../carousel.slides.0.image_width) 100}}%"
+                {{/and}}
+                {{/if}}
+            >
+                <img class="heroCarousel-image heroCarousel-image--{{add @index 1}}" 
+                    {{#if @first}}
+                        src="{{image}}"
+                    {{else}}
+                        data-lazy="{{image}}"
+                        src="{{cdn 'img/loading.svg'}}"
+                    {{/if}}
+                    alt="{{alt_text}}" title="{{alt_text}}"
+                    {{#if image_width}}width="{{image_width}}"{{/if}} {{#if image_height}}height="{{image_height}}"{{/if}} />
+            </div>
+            {{#if heading}}
+                {{> components/carousel-content show_background=true}}
+            {{else}}
+                {{#if text}}
+                    {{> components/carousel-content show_background=true}}
+                {{else}}
+                    {{#if button_text}}
+                        {{> components/carousel-content show_background=false}}
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        </div>
+    </a>
+    {{/each}}
+</section>

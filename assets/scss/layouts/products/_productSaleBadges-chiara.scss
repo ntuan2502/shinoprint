@@ -1,0 +1,117 @@
+.product {
+    overflow: visible;
+}
+
+.sale-flag-side {
+    $fs: fontSize("smallest");
+    $lh: 1.25;
+    $pd-top: spacing("eighth") / 2;
+
+    border-radius: 0;
+    font-size: $fs;
+    font-weight: stencilFontWeight("headings-font");
+    text-transform: uppercase;
+    line-height: $lh;
+    height: auto;
+    padding: $pd-top spacing("quarter");
+    top: 10px;
+    left: 10px;
+
+    .productView-images & {
+    	left: spacing("base") + remCalc(10px);
+    }
+
+    $h_s: remCalc($fs * $lh) + $pd-top * 2 + spacing("eighth");
+    $h_m: remCalc($fs * $lh) + $pd-top * 2 + spacing("quarter");
+
+    + .sale-flag-side {
+        top: remCalc(10px) + $h_s;
+
+        @include breakpoint("medium") {
+            top: remCalc(10px) + $h_m;
+        }
+    }
+
+    + .sale-flag-side + .sale-flag-side {
+        top: remCalc(10px) + $h_s * 2;
+
+        @include breakpoint("medium") {
+            top: remCalc(10px) + $h_m * 2;
+        }
+    }
+
+    + .sale-flag-side + .sale-flag-side + .sale-flag-side {
+        top: remCalc(10px) + $h_s * 3;
+
+        @include breakpoint("medium") {
+            top: remCalc(10px) + $h_m * 3;
+        }
+    }
+}
+
+.sale-flag-side--custom {
+    text-transform: none;
+    background-color: stencilColor("color_badge_product_custom_badges");
+    color: stencilColor("color_text_product_custom_badges");
+
+    .product:hover & {
+        background-color: stencilColor("color_badge_product_custom_badges");
+    }
+}
+
+.sale-flag-side--outstock {
+    background-color: stencilColor("color_badge_product_outstock_badges");
+    color: stencilColor("color_text_product_outstock_badges");
+
+    .product:hover & {
+        background-color: stencilColor("color_badge_product_outstock_badges");
+    }
+}
+
+
+.sale-flag-star,
+.sale-flag-star:before,
+.sale-flag-star:after {
+}
+
+.starwrap {
+	left: spacing("base") + remCalc(10px);
+}
+
+.sale-text-burst {
+	font-size: fontSize("smallest");
+	font-weight: fontWeight("medium");
+}
+
+.sale-flag-sash {
+	left: spacing("base") - remCalc(35px);
+	transform: rotate(45deg);
+	font-size: fontSize("smallest");
+    font-weight: fontWeight("medium");
+}
+
+.productView-images:not(.productView-images--bottom) {
+    $tw: remCalc(to-number(get-width(stencilString('productthumb_size')))) + spacing("base") * 2;
+
+    .sale-flag-side,
+    .starwrap {
+        @include breakpoint("small") {
+            left: spacing("half") + $tw + remCalc(10px);
+        }
+
+        @include breakpoint("large") {
+            left: spacing("single") + $tw + remCalc(10px);
+        }
+    }
+
+
+    .sale-flag-sash {
+        @include breakpoint("small") {
+            left: spacing("half") + $tw + spacing("base") - remCalc(35px);
+        }
+
+        @include breakpoint("large") {
+            left: spacing("single") + $tw + spacing("base") - remCalc(35px);
+        }
+    }
+}

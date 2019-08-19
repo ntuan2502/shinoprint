@@ -1,0 +1,67 @@
+
+// .login-form {
+//     @include breakpoint("medium") {
+//         width: 50%;
+//         float: none;
+//         margin: 0 auto;
+//     }
+// }
+
+// .new-customer {
+//     @include breakpoint("medium") {
+//         width: 50%;
+//         float: none;
+//         margin: 0 auto;
+//     }
+// }
+
+.login {
+    margin: 0 auto;
+}
+
+.login-row {
+    @include breakpoint("medium") {
+        margin-top: spacing("single");
+    }
+}
+
+.login-form {
+    .form-actions {
+        @include breakpoint("medium") {
+            text-align: initial;
+
+            @include ie-only() {
+                text-align: left;
+            }
+        }
+
+        > * {
+            vertical-align: middle;
+        }
+    }
+}
+
+.new-customer {
+    @media (max-width: screenSize("medium") - 1px) {
+        border-top: container("border");
+    }
+    
+    .panel-header {
+        background-color: transparent;
+
+        @media (max-width: screenSize("medium") - 1px) {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    .panel-body {
+        background-color: transparent;
+
+        @media (max-width: screenSize("medium") - 1px) {
+            padding-left: 0;
+            padding-right: 0;
+            margin-bottom: 0;
+        }
+    }
+}

@@ -1,0 +1,56 @@
+{{!
+    Params:
+    - index
+    - url
+    - position
+    - banner_image_domain
+    - banner_image_path
+    - banner_heading
+    - banner_button
+    - heading
+    - limit
+}}
+{{#block (concat "chiara-products-by-category" index)}}
+<div class="chiara-section chiara-section--productsByCategory chiara-section--productsByCategory-{{position}}">
+    <div class="chiara-productsByCategory chiara-productsByCategory--{{position}}">
+        <div class="chiara-productsByCategory-banner">
+            <div class="chiara-productsByCategory-banner-img"><a href="#"><img class="lazyload" data-sizes="auto" src="{{cdn 'assets/img/loading.svg'}}" data-src="{{banner_image_domain}}{{banner_image_path}}" alt="{{banner_heading}}"></a></div>
+            <div class="chiara-productsByCategory-banner-content">
+                <h5 class="chiara-productsByCategory-banner-title">{{{banner_heading}}}</h5>
+                <p class="chiara-productsByCategory-banner-button"><a class="button button--large" href="#">{{banner_button}} &nbsp;<i class="fas fa-chevron-right"></i></a></p>
+            </div>
+        </div>
+        <div class="chiara-productsByCategory-productsContainer" data-products-by-category-sorting-tabs>
+            <h3 class="chiara-productsByCategory-heading">{{heading}}</h3>
+            <ul class="tabs" data-tab>
+                <li class="tab is-active">
+                    <a class="tab-title" href="#tab-productsByCategory-new-{{index}}">New</a>
+                </li>
+                <li class="tab">
+                    <a class="tab-title" href="#tab-productsByCategory-top-{{index}}">Best Sellers</a>
+                </li>
+                <li class="tab">
+                    <a class="tab-title" href="#tab-productsByCategory-featured-{{index}}">Featured</a>
+                </li>
+                <li class="tab">
+                    <a class="tab-title" href="#tab-productsByCategory-rating-{{index}}">Top Reviewed</a>
+                </li>
+            </ul>
+            <div class="tabs-contents">
+                <div class="tab-content is-active" id="tab-productsByCategory-new-{{index}}" data-url="{{url}}?sort=newest&amp;limit={{limit}}">
+                    <img class="img-loading" src="{{cdn 'img/loading.svg'}}" alt="loading" />
+                </div>
+                <div class="tab-content" id="tab-productsByCategory-top-{{index}}" data-url="{{url}}?sort=bestselling&amp;limit={{limit}}">
+                    <img class="img-loading" src="{{cdn 'img/loading.svg'}}" alt="loading" />
+                </div>
+                <div class="tab-content" id="tab-productsByCategory-featured-{{index}}" data-url="{{url}}?sort=featured&amp;limit={{limit}}">
+                    <img class="img-loading" src="{{cdn 'img/loading.svg'}}" alt="loading" />
+                </div>
+                <div class="tab-content" id="tab-productsByCategory-rating-{{index}}" data-url="{{url}}?sort=avgcustomerreview&amp;limit={{limit}}">
+                    <img class="img-loading" src="{{cdn 'img/loading.svg'}}" alt="loading" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/block}}

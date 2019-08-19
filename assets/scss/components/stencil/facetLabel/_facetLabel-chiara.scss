@@ -1,0 +1,11 @@
+.facetLabel {
+    color: $color-textBase;
+
+    &:hover {
+        color: $color-textBase-hover;
+    }
+
+    &:focus {
+        color: $color-textBase-active;
+    }
+}

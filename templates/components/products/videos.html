@@ -1,0 +1,37 @@
+{{#if product.videos.list.length}}
+<section class="productView-videos {{#if theme_settings.productpage_videos_type '===' 'tab'}}productView-videos--{{theme_settings.productpage_tabs_type}} productView-tab-content{{else}}productView-videos--full{{/if}}" id="product-tab-videos-{{product.id}}">
+    <h3 class="productView-videos-heading">{{lang 'products.videos.header'}}</h3>
+    <div class="productView-videos-content" data-video-gallery>
+        <div class="videoGallery-main">
+            <iframe
+                id="player"
+                class="lazyload"
+                type="text/html"
+                width="640"
+                height="390"
+                frameborder="0"
+                webkitAllowFullScreen
+                mozallowfullscreen
+                allowFullScreen
+                data-src="//www.youtube.com/embed/{{product.videos.featured.id}}"
+                data-video-player>
+            </iframe>
+        </div>
+        <ul class="videoGallery-list">
+        {{#each product.videos.list}}
+            <li class="videoGallery-item">
+                <a href="#" class="video {{#if @first}}is-active{{/if}}" data-video-item data-video-id="{{id}}">
+                    <div class="video-figure">
+                        <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="//i.ytimg.com/vi/{{id}}/default.jpg"/>
+                    </div>
+                    <div class="video-body">
+                        <h5 class="video-title">{{title_long}}</h5>
+                        <p class="video-description">{{description_short}}</p>
+                    </div>
+                </a>
+            </li>
+        {{/each}}
+        </ul>
+    </div>
+</section>
+{{/if}}

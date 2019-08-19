@@ -1,0 +1,100 @@
+// =============================================================================
+// PRICE (CSS)
+// =============================================================================
+
+/*
+.price-section {
+	// color: $color-textSecondary;
+
+	> * {
+		vertical-align: baseline;
+	}
+
+	[itemprop="priceSpecification"] {
+		display: inline;
+	}
+}
+
+.price-section--saving {
+	.price {
+		color: $color-textSecondary;
+	}
+}
+
+.price {
+	color: stencilColor("color-price");
+}
+
+.price--rrp,
+.price--discounted {
+	color: $color-textSecondary;
+	// font-weight: fontWeight("thin");
+}
+
+.price-was-label {
+	display: none !important;
+}
+
+.price-now-label {
+	display: none !important;
+}
+*/
+
+
+.price-section-group {
+	abbr {
+		line-height: 1;
+		font-size: fontSize("smallest");
+		padding: 1px spacing("third");
+		border-radius: $global-radius;
+		background-color: container("fill", "dark");
+		vertical-align: middle;
+		text-decoration: none;
+	}
+
+	+ .price-section-group {
+		margin-top: spacing("half");
+
+		@include breakpoint("small") {
+			margin-top: 0;
+		}
+	}
+}
+
+.price-section {
+	display: inline-block;
+	color: stencilColor("color-textSecondary");
+	margin-right: spacing("half");
+	line-height: 1.25;
+}
+
+.price-section--saving {
+	display: block;
+	margin-top: spacing("half");
+	font-size: 0;
+	font-style: italic;
+
+	@include breakpoint("small") {
+		margin-top: spacing("quarter");
+	}
+
+	.price {
+		font-size: fontSize("base");
+		color: $color-primary;
+		border-bottom: 1px solid $color-primary;
+
+		&:not(:first-child) {
+			padding-left: spacing("quarter");
+		}
+	}
+}
+
+.price {
+	color: stencilColor("color-price");
+	font-weight: stencilFontWeight("headings-font");
+}
+
+.price--rrp,
+.price--non-sale {
+	color: stencilColor("color-textSecondary");
+}

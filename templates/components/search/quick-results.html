@@ -1,0 +1,22 @@
+
+<a class="modal-close" aria-label="{{lang 'common.close'}}" data-drop-down-close role="button">
+    <span aria-hidden="true">&#215;</span>
+</a>
+<p class="quickSearchMessage">
+    <span class="quickSearchMessage-text">{{lang 'search.results.quick_count' count=pagination.product_results.total search_query=forms.search.query}}</span>
+
+    {{#if product_results.products}}
+        <a href="{{forms.search.product_url}}" class="quickSearchResults-more">{{lang 'search.quick_search.show_all'}}</a>
+    {{/if}}    
+</p>
+
+{{#if product_results.products}}
+<ul class="productGrid" data-lock-body-scroll>
+
+    {{#each product_results.products}}
+    <li class="product">
+        {{> components/products/card settings=../settings alternate=true show_compare=../show_compare theme_settings=../theme_settings show_wishlist=../settings.show_wishlist customer=../customer event="list" position=(add @index 1)}}
+    </li>
+    {{/each}}
+</ul>
+{{/if}}

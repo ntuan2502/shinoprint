@@ -1,0 +1,4 @@
+/* Only show 1 progress bar */
+.nanobar .bar + .bar { 
+    display: none;
+}

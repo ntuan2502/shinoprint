@@ -1,0 +1,24 @@
+
+@media (max-width: screenSize("medium") - 1px) {
+    .page-type-compare .page-content {
+        overflow: auto;
+    }
+
+    .compareTable {
+        width: auto;
+        min-width: 100%;
+    }
+
+    .compareTable-product {
+        min-width: 150px;
+    }
+
+    .compareTable-heading {
+        padding: 0;
+    }
+
+    .compareTable-headingText {
+        padding: 0 spacing("base");
+        font-weight: fontWeight("bold");
+    }
+}

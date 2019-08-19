@@ -1,0 +1,72 @@
+.modal-close {
+    top: 0;
+    right: 0;
+    color: $color-textBase;
+    background-color: container("fill");
+
+    &:hover,
+    &:focus {
+        color: $color-textBase-hover;
+    }
+
+    @media (max-width: screenSize("medium") - 1px) {
+        width: $header-height - 1px;
+        height: $header-height - 1px;
+        line-height: $header-height - 1px;
+        font-size: 46px;
+    }
+}
+
+.modal {
+    @media (max-width: screenSize("medium") - 1px) {
+        width: 100%;
+        max-width: none;
+        height: 100%;
+        max-height: none;
+        left: 0;
+        top: 0 !important;
+        transform: none;
+    }
+
+    @include breakpoint("medium") {
+        overflow: visible; // fix issue when click on product option in quick view if already scroll down
+    }
+}
+
+.modal-content {
+    @media (max-width: screenSize("medium") - 1px) {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.modal-header {
+    @media (max-width: screenSize("medium") - 1px) {
+        padding: spacing("half") spacing("single");
+        padding-right: spacing("single") + remCalc(46); // + close button width
+        min-height: $header-height;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.modal-body {
+    @media (max-width: screenSize("medium") - 1px) {
+        max-height: 100% !important;
+        padding: spacing("single");
+    }
+}
+
+.modal-header-title {
+    @media (max-width: screenSize("medium") - 1px) {
+        font-size: fontSize("base");
+        text-align: inherit;
+    }
+}
+
+.has-activeModal--miniPreview {
+    .modal-background {
+        display: none !important;
+    }
+}

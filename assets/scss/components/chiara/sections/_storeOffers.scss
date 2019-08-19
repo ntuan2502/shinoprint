@@ -1,0 +1,74 @@
+.chiara-storeOffers {
+    margin: 0;
+
+    @include breakpoint("small") {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 (-$column-gutter / 2);
+    }
+}
+
+.chiara-storeOffers-item {
+    display: flex;
+    align-items: flex-start;
+
+    @include breakpoint("small") {
+        margin: 0 $column-gutter / 2;
+        width: calc(50% - #{$column-gutter});
+    }
+
+    @include breakpoint("medium") {
+        width: calc(25% - #{$column-gutter});
+    }
+
+    + .chiara-storeOffers-item {
+        margin-top: spacing("half");
+
+        @include breakpoint("small") {
+            margin-top: 0;
+        }
+    }
+
+    &:nth-child(2) ~ .chiara-storeOffers-item {
+        @include breakpoint("small") {
+            margin-top: spacing("half");
+        }
+
+        @include breakpoint("medium") {
+            margin-top: 0;
+        }
+    }
+}
+
+.chiara-storeOffers-img {
+    width: 60px;
+
+    svg {
+        width: 60px;
+        height: 60px;
+    }
+
+    &.demo {
+        svg {
+            fill: #aaa;
+        }
+    }
+}
+
+.chiara-storeOffers-content {
+    margin-left: spacing("base");
+}
+
+.chiara-storeOffers-title {
+    margin: spacing("quarter") 0 0;
+    font-family: stencilFontFamily("body-font");
+    font-weight: fontWeight("semibold");
+    font-size: fontSize("base") * 15/14;
+    color: stencilColor("color-textHeading");
+}
+
+.chiara-storeOffers-text {
+    font-size: fontSize("base") * 12/14;
+    color: stencilColor("color-textSecondary");
+    margin-bottom: 0;
+}

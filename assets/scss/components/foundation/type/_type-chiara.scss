@@ -1,0 +1,57 @@
+h1,
+h2,
+h3,
+h4 {
+    line-height: 1.25;
+}
+
+p {
+    margin-bottom: spacing("half");
+
+    @include breakpoint("medium") {
+        margin-bottom: spacing("base");
+    }
+}
+
+@mixin page-heading() {
+    font-family: stencilFontFamily("page-heading-font");
+    font-weight: stencilFontWeight("page-heading-font");
+    font-size: $page-heading-fontSize * .75;
+    margin: 0 0 spacing("single");
+    text-align: center;
+
+    @include breakpoint("medium") {
+        margin-bottom: spacing("double");
+        font-size: $page-heading-fontSize;
+    }
+}
+
+%page-heading {
+    @include page-heading;
+}
+
+.page-heading {
+    @extend %page-heading;
+}
+
+
+.page-subheading {
+    text-align: center;
+    color: stencilColor("color-textSecondary");
+    font-size: fontSize("smaller") * .75;
+    margin-bottom: spacing("single");
+    line-height: 1.25;
+
+    @include breakpoint("medium") {
+        font-size: fontSize("smaller");
+        margin-bottom: spacing("double");
+    }
+
+    .page-heading + & {
+        margin-top: -(spacing("half") + spacing("quarter"));
+
+        @include breakpoint("medium") {
+            margin-top: -(spacing("single") + spacing("half"));
+        }
+    }
+}

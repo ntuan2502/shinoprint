@@ -1,0 +1,87 @@
+.mobileSidebar-toggle {
+    @extend %mobile-toggle-floating-button;
+}
+
+@media (max-width: screenSize("medium") - 1px) {
+    .has-mobileSidebar {
+        overflow: hidden;
+    }
+
+    .page-sidebar.mobileSidebar-panel,
+    .mobileSidebar-panel {
+        @include mobile-panel;
+
+        #faceted-search-container {
+            @include mobile-panel-body;
+        }
+
+        /*
+        position: fixed;
+        max-width: 400px;
+        width: 100%;
+        left: 0;
+        top: $header-height;
+        bottom: 0;
+        z-index: zIndex("lower") - 1;
+        background-color: container("fill");
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: spacing("single") $container-padding spacing("half") + remCalc(100);
+        */
+    }
+
+    .mobileSidebar-panel {
+
+        // box-shadow: 0 0 30px rgba(0,0,0,0.1);
+        // transform: translateX(calc(-100% - 30px));
+        // transition: all 0.3s ease-in-out;
+
+        // &.is-open {
+        //     display: block;
+        //     transform: none;
+        // }
+
+        .facetedSearch-toggle {
+            display: none;
+        }
+
+        .facetedSearch-navList {
+            display: block;
+        }
+
+        .sidebarBlock--products {
+            display: none;
+        }
+
+        .accordion {
+            border: 0;
+        }
+
+        .accordion-block + .accordion-block {
+            margin-top: spacing("single") + spacing("third");
+        }
+
+        .accordion-navigation {
+            border: 0;
+            margin-bottom: spacing("half") !important;
+        }
+
+        .facetedSearch-toggle + .facetedSearch-navList, 
+        .sidebarBlock + .facetedSearch-navList {
+            margin-top: 0;
+        }
+
+        .accordion--navList .accordion-title {
+            padding: 0;
+        }
+
+        .accordion--navList .accordion-navigation-actions {
+            right: 0;
+            top: 0;
+        }
+
+        .accordion--navList .accordion-content {
+            padding: 0;
+        }
+    }
+}

@@ -1,0 +1,13 @@
+.brand-image-container {
+    margin: 0 auto;
+
+    &.page-heading-logo {
+        @media (max-width: screenSize("medium")) {
+            max-width: none;
+        }
+    }
+}
+
+.page-type-brand {
+
+}

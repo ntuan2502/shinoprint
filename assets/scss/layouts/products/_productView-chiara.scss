@@ -1,0 +1,336 @@
+$productView-images-order: 0;
+$productView-details-order: 5;
+$productView-banner3-order: 10;
+$productView-banner4-order: 15;
+$productView-banner6-order: 45;
+$productView-options-order: 20;
+$productView-bulkPrice-order: 25;
+$productView-banner1-order: 30;
+$productView-banner2-order: 35;
+$productView-alsoBought-order: 40;
+$productView-properties-order: 45;
+$productView-warranty-order: 50;
+$productView-addition-order: 55;
+$productView-reviews-order: 60;
+$productView-desc-order: 65;
+$productView-videos-order: 70;
+
+// Product view layout
+// -----------------------------------------------------------------------------
+
+.page-type-product {
+    @if stencilString("productpage_addCart_mobile") == "inline" {
+        @media (max-width: screenSize("medium") - 1px) {
+            margin-bottom: $header-height;
+        }
+    }
+}
+
+.productView {
+	display: flex;
+	flex-direction: column;
+	margin: 0 (-(container("padding") / 2));
+	background-color: container("fill", "dark");
+
+	.papaSupermarket-layout--left-sidebar & {
+		margin: 0 (-$container-padding / 2);
+	}
+
+	@include breakpoint("medium") {
+		display: block;
+		margin: 0 (-$container-padding / 2);
+		background-color: transparent;
+	}
+
+	@include breakpoint("large") {
+		margin: 0 (-$column-gutter);
+	}
+}
+
+.productView--amp {
+	margin: 0;
+}
+
+%productView-col {
+	padding: spacing("half") $container-padding / 2;
+	background-color: container("fill");
+
+	@include breakpoint("medium") {
+		width: 50%;
+	}
+
+	@include breakpoint("medium") {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+
+	@include breakpoint("large") {
+		padding-left: $column-gutter;
+		padding-right: $column-gutter;
+	}
+}
+
+%productView-col-left {
+	@extend %productView-col;
+	@include breakpoint("medium") {
+		clear: left;
+	}
+}
+
+%productView-col-right {
+	@extend %productView-col;
+	@include breakpoint("medium") {
+		float: right;
+		clear: right;
+	}
+}
+
+%productView-col-full {
+	@extend %productView-col;
+	@include breakpoint("medium") {
+		float: none;
+		clear: both;
+		width: 100%;
+	}
+}
+
+.productView-details {
+	@extend %productView-col-right;
+	order: $productView-details-order;
+	.productView-info {
+		margin-top: spacing("half");
+
+		@include breakpoint("medium") {
+			margin-top: spacing("single");
+		}
+	}
+}
+
+.productView-images {
+	@extend %productView-col-left;
+	order: $productView-images-order;
+	position: relative;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.productView-bulkPricing {
+	@extend %productView-col-right;
+	order: $productView-bulkPrice-order;
+
+	@media(max-width: screenSize("medium") - 1px) {
+		padding: 0;
+		background-color: transparent;
+	}
+}
+
+.productView-options {
+	order: $productView-options-order;
+	@extend %productView-col-right;
+
+	@if stencilString("productpage_addCart_mobile") == "panel" {
+		@media(max-width: screenSize("medium") - 1px) {
+			padding: 0;
+		}
+	}
+}
+
+.productView-options--amp {
+	@extend %productView-col-full;
+}
+
+.productView-alsoBought {
+	order: $productView-alsoBought-order;
+	@extend %productView-col-left;
+}
+
+.productView-properties {
+	order: $productView-properties-order;
+}
+
+.productView-properties--right {
+	@extend %productView-col-right;
+}
+
+.productView-properties--full {
+	@extend %productView-col-full;
+}
+
+.productView-warranty {
+	order: $productView-warranty-order;
+}
+
+.productView-warranty--right {
+	@extend %productView-col-right;
+}
+
+.productView-warranty--full {
+	@extend %productView-col-full;
+}
+
+.productView-addition {
+	order: $productView-addition-order;
+}
+
+.productView-addition--right {
+	@extend %productView-col-right;
+}
+
+.productView-addition--full {
+	@extend %productView-col-full;
+}
+
+.productView-reviews {
+	order: $productView-reviews-order;
+}
+
+.productView-reviews--left {
+	@extend %productView-col-left;
+}
+
+.productView-reviews--right {
+	@extend %productView-col-right;
+}
+
+.productView-reviews--full {
+	@extend %productView-col-full;
+}
+
+.productView-desc {
+	order: $productView-desc-order;
+}
+
+.productView-desc--left {
+	@extend %productView-col-left;
+}
+
+.productView-desc--right {
+	@extend %productView-col-right;
+}
+
+.productView-desc--full {
+	@extend %productView-col-full;
+}
+
+.productView-videos {
+	order: $productView-videos-order;
+}
+
+.productView-videos--left {
+	@extend %productView-col-left;
+}
+
+.productView-videos--right {
+	@extend %productView-col-right;
+}
+
+.productView-videos--full {
+	@extend %productView-col-full;
+}
+
+
+.productView-productsList {
+	@extend %productView-col-full;
+}
+
+.productView-tabs {
+	list-style: none;
+	display: none;
+
+	@include breakpoint("medium") {
+		display: block;
+	}
+}
+
+.productView-tabs--left {
+	@extend %productView-col-left;
+}
+
+.productView-tabs--right {
+	@extend %productView-col-right;
+}
+
+.productView-tabs--full {
+	@extend %productView-col-full;
+}
+
+.productView-reviewTabs,
+.productView-productTabs {
+	padding: 0 $container-padding / 2 - container("padding") / 2;
+
+	@include breakpoint("medium") {
+		padding: 0;
+	}
+}
+
+.productView-banner.loaded {
+	@extend %productView-col-right;
+	margin-top: spacing("half");
+
+	@include breakpoint("medium") {
+		margin-top: spacing("single");
+	}
+
+	+ .productView-banner--2.loaded,
+	+ .productView-banner--4.loaded {
+		margin-top: 0;
+		padding-top: 0;
+	}
+}
+
+.productView-banner--1 {
+	order: $productView-banner1-order;
+}
+
+.productView-banner--2 {
+	order: $productView-banner2-order;
+}
+
+.productView-banner--3 {
+	order: $productView-banner3-order;
+}
+
+.productView-banner--4 {
+	order: $productView-banner4-order;
+}
+
+.productView-banner--3.loaded,
+.productView-banner--4.loaded {
+	@media (max-width: screenSize("medium") - 1px) {
+		margin-top: 0;
+		padding-top: 0;
+	}
+}
+
+.productView-banner--5.loaded {
+	padding: 0;
+
+	@include breakpoint("medium") {
+		width: 100%;
+		float: none;
+		margin-top: spacing("half");
+	}
+}
+
+.productView-banner--6 {
+	order: $productView-banner6-order;
+	&.loaded {
+		float: left;
+		width: 100%;
+	}
+}
+
+.productView-outerAlsoBought {
+	display: flex;
+	flex-direction: column;
+	order: 5;
+
+	~ .productView-outerAlsoBought:last-child {
+		order: $productView-alsoBought-order + 5;
+	}
+
+	@include breakpoint("medium") {
+		display: inline;
+	}
+}
+

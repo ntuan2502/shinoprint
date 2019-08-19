@@ -1,0 +1,326 @@
+{{#if banners}}
+{{> components/chiara/banners/count-standard-banners banners=banners}}
+{{#if banners.top_count}}
+<div class="banners{{#if theme_settings.topHeader_show}}{{#if theme_settings.topHeader_show_banner}} u-hiddenVisually-desktop{{/if}}{{/if}}" data-banner-location="top">
+    {{#each banners.top_metadata}}
+        {{#unless (occurrences this.content 'data-remote-banner-position')}}
+            {{#unless (occurrences this.content 'data-local-banner-position')}}
+                <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+                    <div data-event-type="promotion-click">
+                        {{{this.content}}}
+                    </div>
+                </div>
+            {{/unless}}
+        {{/unless}}
+    {{/each}}
+</div>
+{{/if}}
+{{/if}}
+<header class="header" role="banner"{{#if theme_settings.header_sticky}} data-stickymenu{{/if}}>
+    <!--
+    <a class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
+        <span class="mobileMenu-toggleIcon">Toggle menu</span>
+    </a>
+    -->
+
+    {{#if theme_settings.topHeader_show}}
+    <div class="header-top">
+        <div class="header-top-container">
+            <ul class="header-top-list">
+                {{#if theme_settings.topHeader_show_phone}}
+                    {{#if theme_settings.contact_phone}}
+                        {{#if theme_settings.contact_phoneText}}
+                            <li class="header-top-item header-top-item--phone"><a class="header-top-action" href="tel:{{theme_settings.contact_phone}}">{{{theme_settings.contact_phoneText}}}</a></li>
+                        {{else}}
+                            <li class="header-top-item header-top-item--phone"><a class="header-top-action" href="tel:{{theme_settings.contact_phone}}">{{lang 'footer.call_us' phone_number=theme_settings.contact_phoneText}}</a></li>
+                        {{/if}}
+                    {{else}}
+                        {{#if settings.phone_number}}
+                            {{#if theme_settings.contact_phoneText}}
+                                <li class="header-top-item header-top-item--phone"><a class="header-top-action" href="tel:{{settings.phone_number}}">{{{theme_settings.contact_phoneText}}}</a></li>
+                            {{else}}
+                                <li class="header-top-item header-top-item--phone"><a class="header-top-action" href="tel:{{settings.phone_number}}">{{lang 'footer.call_us' phone_number=settings.phone_number}}</a></li>
+                            {{/if}}
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+                
+                {{#and theme_settings.topHeader_show_address settings.address}}
+                <li class="header-top-item header-top-item--address"><a class="header-top-action">{{settings.address}}</a></li>
+                {{/and}}
+
+                {{#if theme_settings.topHeader_show_banner}}
+                {{#if banners.top_count}}
+                <li class="header-top-item header-top-item--banner">
+                    {{#each banners.top_metadata}}
+                        {{#unless (occurrences this.content 'data-remote-banner-position')}}
+                            {{#unless (occurrences this.content 'data-local-banner-position')}}
+                                <div class="banner">
+                                    {{{this.content}}}
+                                </div>
+                            {{/unless}}
+                        {{/unless}}
+                    {{/each}}
+                </li>
+                {{/if}}
+                {{/if}}
+                <li class="header-top-item">
+                    <a class="header-top-action header-top-action--currencySelector has-dropdown" href="#" data-dropdown="header-top-currencySelection" data-options="align:top" aria-controls="header-top-currencySelection" aria-expanded="false">{{lang 'common.currency' code=currency_selector.active_currency_code}} <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i></a>
+                    <ul class="dropdown-menu" id="header-top-currencySelection" data-dropdown-content aria-hidden="true" tabindex="-1">
+                        {{#each currency_selector.currencies}}
+                        <li class="dropdown-menu-item">
+                            <a href="{{{switch_url}}}">
+                                {{#if is_active}}
+                                <strong>{{name}}</strong>
+                                {{else}}
+                                {{name}}
+                                {{/if}}
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </li>
+                <li class="header-top-item"><a class="header-top-action" href="{{urls.auth.create_account}}">{{lang 'login.new_customer.create_account' }}</a></li>
+                <li class="header-top-item"><a class="header-top-action" data-collapsible="navUser-more-panel" data-group-collapsible="main">{{lang 'login.heading' }}</a></li>
+            </ul>
+        </div>
+    </div>
+    {{/if}}
+
+    <div class="header-main">
+        <div class="header-main-container header-main-container--{{theme_settings.logo-position}}">
+            {{#if page_type '===' 'default'}}
+                <h1 class="header-logo header-logo--{{theme_settings.logo-position}}">
+                    {{> components/common/store-logo}}
+                </h1>
+            {{else}}
+                <div class="header-logo header-logo--{{theme_settings.logo-position}}">
+                    {{> components/common/store-logo}}
+                </div>
+            {{/if}}
+
+            <div class="navPages-container" id="menu" data-menu>
+                <p class="navPages-container-heading"><span class="navPages-container-heading-ellipse">{{lang 'bottom_bar.more'}}</span></p>
+                <a class="mobile-panel-close" data-mobile-menu-toggle="menu" href="#"><svg><use xlink:href="#icon-close" aria-hidden="true" /></svg></a>
+                {{> components/common/navigation-menu}}
+            </div>
+
+            {{> components/common/navigation}}
+        </div>
+    </div>
+
+    {{{region name="header_bottom"}}}
+</header>
+
+<div class="dropdown dropdown--quickSearch" id="quickSearch" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+    {{> components/common/quick-search}}
+</div>
+
+<div class="navCatalog-panel" id="navCatalog-panel">
+    <p class="mobile-panel-heading"><span class="mobile-panel-heading-ellipse">{{lang 'category.label'}}</span></p>
+    <a class="mobile-panel-close" data-collapsible="navCatalog-panel" data-group-collapsible="main"><svg><use xlink:href="#icon-close" aria-hidden="true"></use></svg></a>
+    <div class="navCatalog-panel-body" data-lock-body-scroll>
+        <nav class="navPages navPages--catalogPanel">
+            <ul class="navPages-list">
+                {{#each categories}}
+                    <li class="navPages-item">
+                    {{> components/common/navigation-list-alternate theme_settings=../theme_settings idSuffix='-catalogPanel' noDepthMaxClass=true}}
+                    </li>
+                {{/each}}
+                
+                {{#if theme_settings.bottomBar_show_brands}}
+                    <li class="navPages-item navPages-item--brands">
+                        <a class="navPages-action has-subMenu is-root" href="{{url}}" data-collapsible="navPages-brands-root"
+                            {{#if theme_settings.navigation_hover}}
+                                data-collapsible-disabled-breakpoint="large"
+                                data-collapsible-disabled-state="open"
+                                data-collapsible-enabled-state="closed"
+                            {{/if}}
+                        >
+                            {{lang 'footer.brands'}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+                        </a>
+                        <div class="navPage-subMenu navPage-subMenu-horizontal" id="navPages-brands-root" aria-hidden="true" tabindex="-1">
+                            <ul class="navPage-subMenu-list">
+                                {{#each shop_by_brand}}
+                                    <li class="navPage-subMenu-item-child">
+                                        <a class="navPage-subMenu-action navPages-action" href="{{url}}">{{name}}</a>
+                                    </li>
+                                {{/each}}
+                                <li class="navPage-subMenu-item-parent">
+                                    <a class="navPage-subMenu-action navPages-action" href="{{urls.brands}}">{{lang 'brand.view_brands'}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                {{/if}}
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="navUser-panel" id="navUser-more-panel">
+    <p class="navUser-panel-heading"><span class="navUser-panel-heading-ellipse">{{lang 'common.account'}}</span></p>
+    <a class="navUser-more-close" id="navUser-more-close" data-collapsible="navUser-more-panel" data-group-collapsible="main"><svg><use xlink:href="#icon-close" aria-hidden="true" /></svg></a>
+    <div class="navUser-panel-content" data-lock-body-scroll>
+        <ul class="navUser-section navUser-section--panel">
+
+            {{#if customer}}
+                <li class="navUser-item navUser-item--account">
+                    <a class="navUser-action" href="{{urls.account.index}}">{{lang 'common.account'}}</a>
+                </li>
+                <li class="navUser-item navUser-item--orders">
+                    <a class="navUser-action" href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a>
+                </li>
+                {{#if settings.returns_enabled}}
+                <li class="navUser-item navUser-item--returns">
+                    <a class="navUser-action" href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a>
+                </li>
+                {{/if}}
+                <li class="navUser-item navUser-item--messages">
+                    <a class="navUser-action" href="{{urls.account.inbox}}">{{#if customer.num_new_messages}}{{lang 'account.nav.messages' num_new_messages=customer.num_new_messages}}{{else}}{{lang 'account.mobile_nav.messages'}}{{/if}}</a>
+                </li>
+                <li class="navUser-item navUser-item--addresses">
+                    <a class="navUser-action" href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</a>
+                </li>
+                {{#if settings.show_payment_methods}}
+                <li class="navUser-item navUser-item--paymentMethods">
+                    <a class="navUser-action" href="{{urls.account.payment_methods.all}}">{{lang 'account.nav.payment_methods'}}</a>
+                </li>
+                {{/if}}
+                {{#if settings.show_wishlist}}
+                <li class="navUser-item navUser-item--wishlist">
+                    <a class="navUser-action" href="{{urls.account.wishlists.all}}">{{#if customer.num_wishlists}}{{lang 'account.nav.wishlists' num_wishlists=customer.num_wishlists}}{{else}}{{lang 'account.mobile_nav.wishlists'}}{{/if}}</a>
+                </li>
+                {{/if}}
+                <li class="navUser-item navUser-item--recentlyViewed">
+                    <a class="navUser-action" href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a>
+                </li>
+                <li class="navUser-item navUser-item--settings">
+                    <a class="navUser-action" href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a>
+                </li>
+                <li class="navUser-item navUser-item--logout">
+                    <a class="navUser-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>
+                </li>
+            {{else}}
+                <li class="navUser-item navUser-item--loginForm">
+                    <p class="navUser-item-heading">{{lang 'login.heading'}}</p>
+                    <form class="navUser-loginForm form" action="{{urls.auth.check_login}}" method="post" data-login-form>
+                        {{inject 'useValidEmail' (lang 'forms.validate.common.email_address')}}
+                        {{inject 'enterPass' (lang 'forms.validate.common.password')}}
+                        <div class="form-field">
+                            <label class="form-label" for="login_email">{{lang 'login.field_email'}}</label>
+                            <input class="form-input" name="login_email" id="login_email" type="email">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label" for="login_pass">{{lang 'login.field_password'}}</label>
+                            <input class="form-input" id="login_pass" type="password" name="login_pass">
+                        </div>
+                        <div class="form-actions">
+                            <input type="submit" class="button button--primary" value="{{lang 'login.submit_value' }}">
+                            <a class="forgot-password" href="{{urls.auth.forgot_password}}">{{lang 'login.forgot_password' }}</a>
+                            {{#if settings.account_creation_enabled}}
+                            <a class="create-account" href="{{urls.auth.create_account}}">{{lang 'login.new_customer.create_account' }}</a>
+                            {{/if}}
+                        </div>
+                    </form>
+                </li>
+            {{/if}}
+                
+            {{#if settings.gift_certificates_enabled}}
+                <li class="navUser-item navUser-item--giftCert">
+                    <a class="navUser-action" href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
+                </li>
+            {{/if}}
+
+            {{#if customer.store_credit.value '>' 0}}
+                <li class="navUser-item navUser-item--storeCredit">
+                    <a class="navUser-action navUser-action--storeCredit"
+                    data-dropdown="storeCredit-dropdown"
+                    data-options="align:bottom"
+                    href="{{urls.cart}}">
+                            <span class="navUser-action-divider">{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}</span>
+                    </a>
+                    <div class="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content aria-hidden="true">
+                        {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+                    </div>
+                </li>
+            {{/if}}
+
+            {{> components/common/currency-selector}}
+
+            {{#if theme_settings.social_icon_placement_top}}
+                <li class="navUser-item navUser-item--social">
+                    {{> components/common/social-links}}
+                </li>
+            {{/if}}
+        </ul>
+    </div>
+</div>
+
+<div class="bottomBar">
+    <ul class="bottomBar-list">
+        <li class="bottomBar-item">
+            <a class="bottomBar-action bottomBar-action--home" href="/">
+                <i class="bottomBar-item-icon"><svg><use xlink:href="#icon-home" /></svg></i>
+                <span class="bottomBar-item-label">{{lang 'bottom_bar.home'}}</span>
+            </a>
+        </li>
+        <li class="bottomBar-item">
+            <a class="bottomBar-action bottomBar-action--store" 
+                data-collapsible="navCatalog-panel" 
+                data-collapsible-disabled-breakpoint="medium"
+                data-collapsible-disabled-state="closed"
+                data-group-collapsible="main">
+                <i class="bottomBar-item-icon"><svg><use xlink:href="#icon-catalog" /></svg></i>
+                <span class="bottomBar-item-label">{{lang 'bottom_bar.store'}}</span>
+            </a>
+        </li>
+        <li class="bottomBar-item">
+            <a class="bottomBar-action bottomBar-action--account" id="navUser-more-toggle2" data-collapsible="navUser-more-panel" data-group-collapsible="main">
+                <i class="bottomBar-item-icon"><svg><use xlink:href="#icon-account" /></svg></i>
+                <span class="bottomBar-item-label">{{lang 'bottom_bar.account'}}</span>
+            </a>
+        </li>
+        <li class="bottomBar-item">
+            <a class="bottomBar-action bottomBar-action--contact" 
+                data-collapsible="bottomBar-contactPanel" 
+                data-collapsible-disabled-breakpoint="medium"
+                data-collapsible-disabled-state="closed"
+                data-group-collapsible="main">
+                <i class="bottomBar-item-icon"><svg><use xlink:href="#icon-location" /></svg></i>
+                <span class="bottomBar-item-label">{{lang 'bottom_bar.contact'}}</span>
+            </a>
+            <div class="bottomBar-contactPanel" id="bottomBar-contactPanel">
+                <ul>
+                    {{#if theme_settings.contact_email}}
+                    <li><a class="button button--primary button--small" href="mailto:{{theme_settings.contact_email}}">{{theme_settings.contact_email}}</a></li>
+                    {{/if}}
+                    {{#if theme_settings.contact_phone}}
+                        {{#if theme_settings.contact_phoneText}}
+                            <li><a class="button button--primary button--small" href="tel:{{theme_settings.contact_phone}}">{{{theme_settings.contact_phoneText}}}</a></li>
+                        {{else}}
+                            <li><a class="button button--primary button--small" href="tel:{{theme_settings.contact_phone}}">{{lang 'footer.call_us' phone_number=theme_settings.contact_phoneText}}</a></li>
+                        {{/if}}
+                    {{else}}
+                        {{#if settings.phone_number}}
+                            {{#if theme_settings.contact_phoneText}}
+                                <li><a class="button button--primary button--small" href="tel:{{settings.phone_number}}">{{{theme_settings.contact_phoneText}}}</a></li>
+                            {{else}}
+                                <li><a class="button button--primary button--small" href="tel:{{settings.phone_number}}">{{lang 'footer.call_us' phone_number=settings.phone_number}}</a></li>
+                            {{/if}}
+                        {{/if}}
+                    {{/if}}
+                    {{#if theme_settings.contact_link}}
+                        <li><a href="{{theme_settings.contact_link}}">{{{theme_settings.contact_linkText}}}</a></li>
+                    {{/if}}
+                </ul>
+            </div>
+        </li>
+        <li class="bottomBar-item">
+            <a class="bottomBar-action bottomBar-action--menu" data-mobile-menu-toggle="menu">
+                <i class="bottomBar-item-icon"><svg><use xlink:href="#icon-more" /></svg></i>
+                <span class="bottomBar-item-label">{{lang 'bottom_bar.more'}}</span>
+            </a>
+        </li>
+    </ul>
+</div>
