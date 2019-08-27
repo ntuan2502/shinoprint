@@ -100,7 +100,43 @@
         </section>
     </div>
 
-    {{#if cart.suggested_products}}
+    <h3 class="productView-productsList-heading">Recommend Products</h3>
+    <div class="your-class">
+        
+    </div>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var name = $('.productView-title').text();
+            console.log(name);
+            $.ajax({
+                    url: 'https://shinoprint.herokuapp.com/recommendproducts/' + name,
+                    type: "get",
+                    success: function(data) {
+                        var products = data.data;
+                        console.log(products);
+                        products.forEach(function(product) {
+                            $('.your-class').append('<a style="margin: 10px; text-decoration: none;" href="'+ product.custom_url.url +'"><img style="margin: 10%;" src="'+ product.images.url_thumbnail +'"/><p style="text-align: center; margin-top: 10px; text-transform: uppercase; color: #666; font-weight: 400; font-size: 12px; letter-spacing: .04em;">'+ product.name +'</p><p style="text-align: center; color: #e60e45; font-size: 16px; font-weight: 700;">$'+ product.price +'</p><a href="/cart.php?action=add&amp;product_id=97" class="button button--small card-figcaption-button" data-chiara-cart-item-add="" tabindex="0">Add to Cart</a></a><div class="card-figcaption-body"></div>')
+                        })
+                        $('.your-class').slick({
+                            "infinite": false,
+                            "mobileFirst": true,
+                            "slidesToShow": 5,
+                            "slidesToScroll": 1,
+                            "dots": false
+                        });
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+        });
+    </script>
+
+    <!-- {{#if cart.suggested_products}}
         <section class="suggestiveCart">
             <h4>
                 {{lang 'cart.added_to_cart.you_might_also_like'}}&hellip;
@@ -114,6 +150,6 @@
                 {{/each}}
             </ul>
         </section>
-    {{/if}}
+    {{/if}} -->
 </div>
     
